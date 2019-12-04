@@ -3,4 +3,12 @@ layout: page
 title: About
 ---
 
-Something about me.
+目前人在重庆，时刻思念这北平。  
+
+### 技能栈
+
+PHP，Python，golang，rust，typescript，html/css/javascript，略懂web安全。  
+
+### 联系方式
+
+`eWFuZzYyMzY5MTM5MUBnbWFpbC5jb20=`
