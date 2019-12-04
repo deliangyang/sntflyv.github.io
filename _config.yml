@@ -1,0 +1,32 @@
+title: sntflyv
+description: "sntflyv's blog"
+author:
+  name: "sntflyv"
+  email: "yang623601391@gmail.com"
+  url: "www.sourcedev.cc"
+
+baseurl: /
+
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 3
+paginate_path: /page/:num/
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+future: true
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Custom variables
+owner : "sntflyv"
+year : "2019"
