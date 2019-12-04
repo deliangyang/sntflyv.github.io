@@ -7,7 +7,11 @@ title: About
 
 ### 技能栈
 
-PHP，Python，golang，rust，typescript，html/css/javascript，略懂web安全。  
+PHP, Python, golang, rust, typescript, html/css/javascript, 略懂web安全, etc.  
+
+Laravel, Yii2, Vue, golang chi, etc.
+
+编写爬虫  
 
 ### 联系方式
 
