@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 git add *
+git add .gitignore
 git commit -m "docs: add post `date "+%Y-%m-%d"`"
 git push
