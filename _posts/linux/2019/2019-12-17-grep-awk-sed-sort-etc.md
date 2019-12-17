@@ -39,6 +39,36 @@ echo -e "a\tb\tc" | awk '{print $1}'
 
 -n, -r, -k
 
+### 如何逐行读取
+
+```bash
+cat test.txt | while read LINE; do
+    echo ${LINE}
+done
+```
+
+### jq  Command-line JSON processor
+
+```bash
+cat 1.json | jq '.'
+# prety print
+{
+  "test": "xxxx",
+  "bb": [
+    {
+      "ccccc": 2
+    }
+  ]
+}
+
+cat 1.json | jq '.test'
+# xxxx
+
+cat 1.json | jq '.bb[0].ccccc'
+# 2
+
+```
+
 
 ### Demo
 
