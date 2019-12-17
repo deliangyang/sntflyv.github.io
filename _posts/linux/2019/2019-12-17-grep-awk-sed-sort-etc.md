@@ -20,7 +20,7 @@
 ### sed替换
 
 ```bash
-echo 123 | sed 's/2/4/g
+echo 123 | sed 's/2/4/g'
 ```
 
 ### awk
