@@ -33,3 +33,10 @@ Date.prototype.Format = function (fmt) { //author: meizz
     return fmt;
 };
 ```
+
+
+### Tips form表单提交个数超过1000就会被截断
+
+```
+max_input_vars 默认1000，可在php.ini中修改
+```
