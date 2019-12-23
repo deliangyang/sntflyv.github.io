@@ -5,7 +5,7 @@
 let value = 43831;
 
 let offsetTime = (new Date()).getTimezoneOffset() * 60;
-let res = parseInt((value - 25569) * 86400 + offsetTime + '');
+let res = Math.round((value - 25569) * 86400 + offsetTime);
 
 console.log(res);
 ```
