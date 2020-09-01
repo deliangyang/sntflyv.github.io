@@ -75,6 +75,18 @@ echo {"abc": 1, "abcd": 2, "Foo": 3} | jq 'keys'
 echo '{"a": 7}' | jq '.a + 1'
 ```
 
+## 实战
+
+### 分析日志
+从日志中获取用户ID，请求方法，请求路径，IP等数据，那么使用如下的命令，就可以很快的提取出你所需要的数据了。
+```bash
+grep -oP '{.+}' /tmp/standard-request-2020082800 | jq -r '[.user, .method, .path, .ip] | @tsv'
+16239	GET	/api/config	39.10.111.91
+18712163	GET	/api/room/rankings	183.90.136.182
+1123050	GET	/api/user/panel	219.192.217.116
+19112230	GET	/api/user/notification	116.186.136.130
+```
+
 ## 总结
 
 1. `jq`功能太强大了，可以通过linux命令翻阅手册`man jq`，查看jq的用法，这里就不逐一介绍了，你能想到的都有。
