@@ -39,33 +39,38 @@ echo '{"foo": 1}{"foo":2}' | jq 'select(.foo == 1)'
 ## jq支持的功能
 - 数据索引
 ```bash
-  echo '[1, 2, 3]' | jq '.[0]'
-  1
+echo '[1, 2, 3]' | jq '.[0]'
+1
 ```
+
 - 切片
 ```bash
 echo '[1, 2, 3]' | jq '.[0:2]'
 [
-  1,
-  2
+    1,
+    2
 ]
 ```
+
 - 可以实现php的array_values，获取字典对象的值
 ```bash
 echo '{"a": 1, "b": 1}' | jq '.[]'
 ```
+
 ```bash
 echo '{"user":"stedolan", "projects": ["jq", "wikiflow"]}' | jq  '.user, .projects[]'
 ```
+
 - 实现php的array_keys，获取字典对象的key名
-```
+```bash
 echo {"abc": 1, "abcd": 2, "Foo": 3} | jq 'keys'
 [
-  "Foo",
-  "abc",
-  "abcd"
+    "Foo",
+    "abc",
+    "abcd"
 ]
 ```
+
 - 数学运算
 ```bash
 echo '{"a": 7}' | jq '.a + 1'
