@@ -55,10 +55,9 @@ echo '[1, 2, 3]' | jq '.[0:2]'
 - 可以实现php的array_values，获取字典对象的值
 ```bash
 echo '{"a": 1, "b": 1}' | jq '.[]'
-```
 
-```bash
 echo '{"user":"stedolan", "projects": ["jq", "wikiflow"]}' | jq  '.user, .projects[]'
+
 ```
 
 - 实现php的array_keys，获取字典对象的key名
