@@ -93,6 +93,84 @@ user	7m52.144s
 sys	0m24.824s
 ```
 
+## 对比测试
+为了验证一下shell的高效处理，于是我用 Golang 写了一个程序来处理，达到相同的效果, 结果让我失望了，竟然 Golang 处理只需要6分钟。其实感觉还好吧，毕竟写程序花费的时间会长一些。
+
+### 代码如下
+```bash
+go build cmd/calc/main.go
+time ./main -log /tmp/standard-request-2020082800  > 1.txt
+
+
+real	5m58.671s
+user	5m58.858s
+sys	0m24.796s
+```
+
+```go
+package main
+
+import (
+	"bufio"
+	"encoding/json"
+	"flag"
+	"fmt"
+	"io"
+	"log"
+	"os"
+	"strings"
+)
+
+type Info struct {
+	User string `json:"user"`
+	IP string `json:"ip"`
+	Path string `json:"path"`
+	Method string `json:"method"`
+}
+
+var (
+	logFile string
+)
+
+func init() {
+	flag.StringVar(&logFile, "log", "", "log file path")
+	flag.Parse()
+}
+
+func main() {
+	if logFile == "" {
+		log.Fatal("log file is empty")
+	}
+	ReadFileContent(logFile)
+}
+
+func ReadFileContent(filename string) {
+	fi, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer fi.Close()
+	br := bufio.NewReader(fi)
+	for {
+		line, err := br.ReadString('\n')
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			log.Fatal(err)
+		}
+
+		content := line[strings.Index(line, "{"):]
+		var info Info
+		err = json.Unmarshal([]byte(content), &info)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(info.User, "\t", info.IP, "\t", info.Method, "\t", info.Path)
+	}
+}
+```
+
 ## 总结
 
 1. `jq` 功能太强大了，可以通过 linux 命令翻阅手册 `man jq`，查看 jq 的用法，这里就不逐一介绍了，你能想到的都有。
