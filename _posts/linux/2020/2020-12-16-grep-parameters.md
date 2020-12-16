@@ -1,4 +1,6 @@
-grep 是liunx下的一个命令行工具，可以通过正则模式搜索文件，或者通过管道匹配标准输入。grep的命令参数分为4大类，可以通过`grep --help`或者`man grep`翻阅所有的参数，如下是官方介绍。
+## Linux下grep的常用参数，助力日常开发
+
+grep 是 liunx 下的一个命令行工具，可以通过正则模式搜索文件，或者通过管道匹配标准输入。grep 的参数分为4大类，可以通过`grep --help`或者`man grep`查看所有的参数，如下是官方介绍。
 
 >   grep  searches  for PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
        and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in a
@@ -10,7 +12,7 @@ grep 是liunx下的一个命令行工具，可以通过正则模式搜索文件�
        In addition, the variant programs egrep and fgrep are the same as grep -E and grep -F,  respectively.   These
        variants are deprecated, but are provided for backward compatibility.
 
-下面就让我来介绍一下这四大类中比较常用的参数
+下面就让我们了解一下这四大类中比较常用的参数
 
 ### 测试案例文件内容
 ```bash
