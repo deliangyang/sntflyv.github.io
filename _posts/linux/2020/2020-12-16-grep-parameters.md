@@ -1,16 +1,10 @@
-## Linux下grep的常用参数，助力日常开发
-
 grep 是 liunx 下的一个命令行工具，可以通过正则模式搜索文件，或者通过管道匹配标准输入。grep 的参数分为4大类，可以通过`grep --help`或者`man grep`查看所有的参数，如下是官方介绍。
 
->   grep  searches  for PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
-       and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in a
-       shell command.
-
-       A  FILE  of  "-"  stands  for  standard  input.   If no FILE is given, recursive searches examine the working
-       directory, and nonrecursive searches read standard input.
-
-       In addition, the variant programs egrep and fgrep are the same as grep -E and grep -F,  respectively.   These
-       variants are deprecated, but are provided for backward compatibility.
+>   grep  searches  for PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters, and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in a shell command.  
+  
+> A  FILE  of  "-"  stands  for  standard  input.   If no FILE is given, recursive searches examine the working directory, and nonrecursive searches read standard input.  
+  
+> In addition, the variant programs egrep and fgrep are the same as grep -E and grep -F, respectively. These variants are deprecated, but are provided for backward compatibility.  
 
 下面就让我们了解一下这四大类中比较常用的参数
 
@@ -127,4 +121,4 @@ To github.com:deliangyang/sntflyv.github.io.git
 1. 通常情况下用的比较多的参数是 `-oP` 或 `-vP`，正则选中或者正则反选输出
 2. grep结合正则表达式方便我们可以很快的在大文件或者目录中查找我们想要的信息
 3. grep更多的参数信息可以通过`man grep`，翻阅手册获取
-4. 作为程序员，怎么高效怎么来，当我们拿到需求的时候，过滤查找日志等信息是，第一时间不是写代码，而是想想这个需求是否可以通过grep来处理。
+4. 作为程序员，文本处理怎么高效怎么来，当我们拿到需求的时候，过滤查找日志等信息是，第一时间不是写代码，而是想想这个需求是否可以通过grep来处理。
