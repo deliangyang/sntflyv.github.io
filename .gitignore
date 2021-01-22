@@ -1,4 +1,2 @@
-_site
-.sass-cache
-.jekyll-cache
 /docs/.vuepress/sidebar.js
+/node_modules/
