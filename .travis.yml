@@ -6,6 +6,7 @@ install:
 script:
   - node bin/gen-sidebar.js > docs/.vuepress/sidebar.js
   - yarn docs:build # npm run docs:build
+  - cp CNAME docs/.vuepress/dist
 branches:
   only:
     - master
