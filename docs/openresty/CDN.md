@@ -40,6 +40,7 @@
     - 对 URL 重新、重定向等，增加删除URL参数
 
 ## 数据和日志采集
+[https://patents.google.com/patent/CN107332719A/zh](https://patents.google.com/patent/CN107332719A/zh)
 
 - 错误日志采集
     - 统一写入kakfa，流式（Flink）实时统计分析
