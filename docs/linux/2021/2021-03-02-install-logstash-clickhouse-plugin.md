@@ -10,6 +10,7 @@ logstash的clickhosue插件是用ruby写的，[https://github.com/funcmike/logst
 - `cd logstash-output-clickhouse`
 - `gem build logstash-output-clickhouse.gemspec`
 - `logstash-plugin install logstash-output-clickhouse-0.1.0.gem`
+- 检查插件是否安装成功：`bin/logstash-plugin list | grep clickhouse`
 
 ### 注意如果使用了国内源的，可能会出现超时，SSL的问题
 > 增加：`:ssl_verify_mode: 0`
