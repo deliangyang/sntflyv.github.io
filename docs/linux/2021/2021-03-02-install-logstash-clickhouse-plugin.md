@@ -24,3 +24,53 @@ root@debian:~# cat ~/.gemrc
 :verbose: true
 :ssl_verify_mode: 0
 ```
+
+### demo
+
+```
+input {
+    kafka {
+        bootstrap_servers => "internal.kafka.1.xxxx.me:9092"
+        group_id => "sync_kd_6"
+        topics => ["test.detailKd"]
+        consumer_threads => 5
+        codec => "json"
+        auto_offset_reset => 'earliest'
+        decorate_events => true
+    }
+}
+
+filter {
+    mutate {
+      add_field => { "@data" => "%{data}" }
+    }
+    json {
+      source => "@data"
+      remove_field => ["@data", "data", "@timestamp", "@version", "event"]
+    }
+    ruby {
+        code => "event.set('time', event.get('time').to_i * 1000)"
+    }
+}
+
+output {
+    clickhouse {
+        http_hosts => ["http://10.0.0.89:8123"]
+        table => "detail.kd"
+        request_tolerance => 5
+        flush_size => 3000
+        pool_max => 1000
+        mutations => {
+            "id" => "id"
+            "user" => "user"
+            "total" => "total"
+            "free" => "free"
+            "relId" => "relId"
+            "type" => "type"
+            "time" => "time"
+        }
+    }
+
+}
+
+```
