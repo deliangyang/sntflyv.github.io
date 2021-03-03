@@ -26,6 +26,9 @@ root@debian:~# cat ~/.gemrc
 :ssl_verify_mode: 0
 ```
 
+#### 离线包安装
+- 找一个已经安装好的，打一个离线包安装，注意版本问题
+
 ### demo
 
 ```
