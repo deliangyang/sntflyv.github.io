@@ -1,6 +1,18 @@
 
 ### sql-client 配置
 
+#### 配置文件解释
+- tables
+    - 定义表source, sink, 试图、临时表
+- functions
+    - UDF user defined function 用户自定义函数
+- catalogs 目录
+- execution 改变表程序基本的执行行为属性。
+- configuration
+    - 在专用的”配置”页面上可以找到完整的选项列表及其默认值。
+- deployment
+    - 描述表程序提交集群的属性。
+
 ```yml
 tables:
   - name: MyTableSource
@@ -52,13 +64,15 @@ select MyField2, count(1) from MyTableSource group by MyField2;
 
 ### 结果
 ```
-
-                  MyField2                    EXPR$1
-                        ab                         1
-                        bc                         1
-                       ddd                         1
-                       234                         1
-                        23                         1
-                         4                         1
-                        dc                         2
+MyField2                    EXPR$1
+      ab                         1
+      bc                         1
+      ddd                         1
+      234                         1
+      23                         1
+        4                         1
+      dc                         2
 ```
+
+### 参考
+[Flink SQL 客户端](https://ci.apache.org/projects/flink/flink-docs-stable/zh/dev/table/sqlClient.html)
