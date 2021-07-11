@@ -28,6 +28,10 @@
 
 - [data_performance](https://www.tensorflow.org/guide/data_performance#the_dataset)
 - [TFRecord 和 tf.Example](https://www.tensorflow.org/tutorials/load_data/tfrecord)
+- [分布式训练](https://www.oreilly.com/content/distributed-tensorflow/)
+- [Tensorflow 分布式训练](https://www.tensorflow.org/guide/distributed_training)
+- [TensorNet是一个构建在TensorFlow之上针对广告推荐等大规模稀疏场景优化的分布式训练框架](https://reposhub.com/python/deep-learning/Qihoo360-tensornet.html)
+- [TensorFlow 分布式 Demo](https://blog.csdn.net/fenglepeng/article/details/105535061)
 
 ## tensorflow demo
 
