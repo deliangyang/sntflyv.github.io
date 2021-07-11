@@ -31,13 +31,11 @@ jobs:
       run: |
         rm -rf .git
         cd docs/.vuepress/dist
+        git config --global init.defaultBranch gh-pages
         git init
         git branch -m gh-pages
         git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git config --global user.name 'sntfly'
         git config --global user.email 'yang623601391@gmail.com'
-        git add .
         git commit -am "auto build"
-        git branch -a
-        git remote -v
         git push --set-upstream origin gh-pages -f
