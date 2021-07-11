@@ -55,8 +55,11 @@ model.compile(optimizer='adam',
 
 # 训练并验证模型：
 model.fit(x_train, y_train, epochs=5)
-
 model.evaluate(x_test,  y_test, verbose=2)
+
+## 结果预测
+res = model.predict(x_test, batch_size=128)
+print(res)
 ```
 
 ## 参考资料
