@@ -1,8 +1,8 @@
 const sidebar = require('./sidebar')
 
 module.exports = {
-	title: 'sntflyv',
-  description: 'thinking',
+	title: 'sntflyv|技术博客',
+  description: 'thinking,技术分析,日常总结,杂七杂八',
   base: '/',
   themeConfig: {
     repo: 'https://github.com/deliangyang/sntflyv.github.io/tree/master/docs',

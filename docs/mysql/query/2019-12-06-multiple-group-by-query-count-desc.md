@@ -67,5 +67,3 @@ WITH xx AS (
 1. MySQl和pgSQL功能是在太强大了，关系查询的特性，帮助我们减少了代码量，提升了工作效率。
 2. 自己对数据库的知识尚且薄弱，仍有很多知识需要学习的。
 3. 如果表的行数特别大的话，可能两次group by操作比较耗时，所有我们可以分步骤进行，或者建立视图。
-
-![http://image.sourcedev.cc/tmp/download/search.png](http://image.sourcedev.cc/tmp/download/search.png)
