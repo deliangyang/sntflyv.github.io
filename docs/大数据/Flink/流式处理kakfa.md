@@ -1,6 +1,69 @@
 
 ## 流式处理之kakfa
 
+### golang 生成测试数据，写入kafka
+```golang
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
+
+	jsoniter "github.com/json-iterator/go"
+	"github.com/segmentio/kafka-go"
+)
+
+// TMessage 测试数据结构
+type TMessage struct {
+	Idx int64  `json:"idx"`
+	T   int64  `json:"t"`
+	Key string `json:"key"`
+}
+
+func main() {
+	topic := "test1"
+
+	partition := 0
+
+	conn, err := kafka.DialLeader(context.Background(), "tcp", "10.0.2.25:9092", topic, partition)
+	if err != nil {
+		log.Fatal("failed to dial leader:", err)
+	}
+
+	t := time.Now().Unix()
+	messages := make([]kafka.Message, 0, 10)
+	for i := 0; i < 10; i++ {
+		msg, err := jsoniter.Marshal(TMessage{
+			Idx: int64(i),
+			T:   t + int64(i),
+			Key: fmt.Sprintf("k-%d", i%2),
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		messages = append(messages, kafka.Message{
+			Value: msg,
+		})
+	}
+
+	conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
+	_, err = conn.WriteMessages(
+		messages...,
+	)
+	if err != nil {
+		log.Fatal("failed to write messages:", err)
+	}
+
+	if err := conn.Close(); err != nil {
+		log.Fatal("failed to close writer:", err)
+	}
+}
+```
+
+### Flink数据聚合
+
 ```scala
 package org.example
 
