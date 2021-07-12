@@ -2,7 +2,8 @@
 ## ClickHouse 建立物化视图
 
 ### 建立kafka引擎的表结构
-
+- 使用kafka引擎，将kafka的数据以`JSONEachRow`，一行就是一条json的结构写入ClickHouse
+- 注意kafka的数据结构，value的结构尽量保持一维结构，深度为1（复杂结构后面再深度研究）
 ```sql
 CREATE TABLE test.test_kafkfa
 (
@@ -14,16 +15,9 @@ ENGINE = Kafka('127.0.0.1:9092', 'test1', 'ch-test', 'JSONEachRow');
 ```
 
 ### 建立物化视图，将kafka数据数据写入表中
-```sql
-CREATE MATERIALIZED VIEW test.test_writer TO test.test_data
-(
-    `t` DateTime,
-    `idx` UInt64,
-    `key` String
-) AS
-SELECT *
-FROM test.test_kafkfa
 
+- 创建的表有点多，如果出错，这个应该可以优化的
+```sql
 CREATE TABLE test.test_data
 (
     `t` DateTime,
@@ -34,7 +28,16 @@ ENGINE = MergeTree
 PARTITION BY toYYYYMMDD(t)
 ORDER BY (t, key)
 TTL toDateTime(t) + toIntervalDay(365)
-SETTINGS index_granularity = 8192
+SETTINGS index_granularity = 8192;
+
+CREATE MATERIALIZED VIEW test.test_writer TO test.test_data
+(
+    `t` DateTime,
+    `idx` UInt64,
+    `key` String
+) AS
+SELECT *
+FROM test.test_kafkfa
 ```
 
 ### 建立表聚合
@@ -61,7 +64,7 @@ GROUP BY
 
 ### 聚合数据查询
 
-- 聚合表中的数据不可以直接查询，会出现乱码，该字段是state的结果
+- 聚合表中的数据不可以直接查询，会出现乱码，因为 `s` 的数据类型是 `AggregateFunction` 该字段是state的结果
 ```sql
 SELECT *
 FROM test.test_stat
