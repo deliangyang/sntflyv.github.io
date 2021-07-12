@@ -13,9 +13,13 @@
 - Acknowledge number(确认号码)
 
 
-### WireShare过滤条件
+### Wireshark过滤条件
 ```
 ip.dst == 42.192.78.57 or ip.src == 42.192.78.57
 
 ip.dst==10.0.2.25 or ip.addr==10.0.2.25 
 ```
+
+### Wireshark
+
+![img](../../assets/wireshark:tcp.png)

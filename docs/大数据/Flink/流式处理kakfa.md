@@ -2,7 +2,7 @@
 ## 流式处理之kakfa
 
 ### golang 生成测试数据，写入kafka
-```golang
+```go
 package main
 
 import (

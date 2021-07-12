@@ -67,6 +67,23 @@ res = model.predict(x_test, batch_size=128)
 print(res)
 ```
 
+## 视频推荐
+- 建立关键词库、个性化标签库
+- 视频上传，用户打tag（描述提取关键词）
+- 后台tag校正、后台打tag
+- 设置标签库、用户设置标签
+- 收集用户的关注、用户的浏览、用户的评论（提取关键词），计算相似度，推荐
+- 热门推荐
+- 已下发过滤、去重
+- 等等
+- 零起点推荐
+    - 一开始需要准备大量的数据，如果单靠用户上传视频，很可能玩到最后就没数据了
+    - 刚注册的用户可能什么都没有
+        - 推荐一些热门的关注
+        - 推荐一些热门的视频
+        - 让用户设置个性化标签、年龄、性别等
+
+
 ## 参考资料
 1. [Tensorflow构建推荐系统](https://blog.csdn.net/Oscar6280868/article/details/80952945)
 2. [Tensorflow io](https://github.com/tensorflow/io#tensorflow-io)

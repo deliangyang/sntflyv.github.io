@@ -4,8 +4,10 @@
 ```php
 #!/usr/bin/env /usr/bin/php
 <?php
+
+$dbname = 'test';
 $db = new \mysqli('127.0.0.1',
-    'root', '123456', 'test');
+    'root', '123456', $dbname);
 $db->set_charset('utf8mb4');
 
 $sql =<<<SQL
@@ -16,7 +18,7 @@ $query = $db->query($sql);
 $tables = [];
 
 while ($row = $query->fetch_assoc()) {
-    $tables[] = $row['Tables_in_ck'];
+    $tables[] = $row['Tables_in_' . $dbname];
 }
 
 foreach ($tables as $table) {
@@ -32,7 +34,7 @@ SQL;
     }
 
     $sql =<<<SQL
-show table status from ck where name = '{$table}'
+show table status from {$dbname} where name = '{$table}'
 SQL;
 	$query = $db->query($sql);
     $row = $query->fetch_assoc();
