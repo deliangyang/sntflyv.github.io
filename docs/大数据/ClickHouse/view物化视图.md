@@ -59,5 +59,36 @@ GROUP BY
     key
 ```
 
+### 聚合数据查询
+
+- 聚合表中的数据不可以直接查询，会出现乱码，该字段是state的结果
+```sql
+SELECT *
+FROM test.test_stat
+
+┌──────────t─┬─key─┬─s─┐
+│ 2021-07-12 │ k-0 │ ( │
+│ 2021-07-12 │ k-1 │ 2 │
+└────────────┴─────┴───┘
+```
+
+- 再次聚合查询，`select ... group by`，这里会用到`sumMerge`函数
+```sql
+SELECT
+    t,
+    key,
+    sumMerge(s)
+FROM test.test_stat
+GROUP BY
+    t,
+    key
+
+┌──────────t─┬─key─┬─sumMerge(s)─┐
+│ 2021-07-12 │ k-1 │          50 │
+│ 2021-07-12 │ k-0 │          40 │
+└────────────┴─────┴─────────────┘
+```
+
 ## 参考资料
 1. [ClickHouse Kafka引擎与 Apache Kafka 结合使用](https://clickhouse.tech/docs/zh/engines/table-engines/integrations/kafka/)
+1. [ClickHouse AggregatingMergeTree](https://clickhouse.tech/docs/zh/engines/table-engines/mergetree-family/aggregatingmergetree/)
