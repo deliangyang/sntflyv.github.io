@@ -8,6 +8,7 @@
 - 容错存储机制
 - 处理流数据
 
+#### 格式
 - 老版格式
 ```
 ENGINE = Kafka('127.0.0.1:9092', 'test1', 'ch-test', 'JSONEachRow');
