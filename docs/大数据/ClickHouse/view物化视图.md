@@ -92,6 +92,13 @@ GROUP BY
 └────────────┴─────┴─────────────┘
 ```
 
+### 日志查看
+- 学习视图期间遇到些问题，可以通过查看error日志，排查定位问题
+
+```bash
+tail -f /var/log/clickhouse-server/*err.log
+```
+
 ## 参考资料
 1. [ClickHouse Kafka引擎与 Apache Kafka 结合使用](https://clickhouse.tech/docs/zh/engines/table-engines/integrations/kafka/)
 1. [ClickHouse AggregatingMergeTree](https://clickhouse.tech/docs/zh/engines/table-engines/mergetree-family/aggregatingmergetree/)
