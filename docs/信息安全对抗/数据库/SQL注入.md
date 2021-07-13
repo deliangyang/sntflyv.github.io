@@ -3,7 +3,7 @@
 ### SQL未转义注入
 
 #### 正常请求
-- name = lucky
+- name = `lucky`
 
 ```sql
 mysql> select * from t_new where name = 'lucky' limit 1;
@@ -14,8 +14,8 @@ mysql> select * from t_new where name = 'lucky' limit 1;
 +-------+-------+----------+---------------------+--------+
 ```
 
-#### 攻击1，验证是否可以注入
-- name = lucky' or 1 = '1
+#### 验证是否可以进行SQL注入
+- name = `lucky' or 1 = '1`
 ```sql
 mysql> select * from t_new where name = 'lucky' or 1 = '1' limit 1;
 +-------+-------+----------+---------------------+--------+
@@ -25,11 +25,12 @@ mysql> select * from t_new where name = 'lucky' or 1 = '1' limit 1;
 +-------+-------+----------+---------------------+--------+
 ```
 
-#### 攻击2
-- name = lucky' union select * from t_new where id = '90002' limit 2;--
+#### 构造SQL，获取更多的数据
+- name = `lucky' union select * from t_new where id = '90002' limit 2; --`
 - 如上攻击就可以把整个表脱下来，俗称“脱裤”
+- `--` 会直接注释后面的 `' limit 1;`，这样一来可以解决`limit 1`的限制，在命令行多产生两条SQL，不影响数据的查询
 ```sql
-mysql> select * from t_new where name = 'lucky' union select * from t_new where id = '90002' limit 2;--' limit 1;
+mysql> select * from t_new where name = 'lucky' union select * from t_new where id = '90002' limit 2; --' limit 1;
 +-------+-------+----------+---------------------+--------+
 | id    | name  | birth    | create_time         | status |
 +-------+-------+----------+---------------------+--------+
@@ -43,4 +44,5 @@ mysql> select * from t_new where name = 'lucky' union select * from t_new where 
 
 ### 解决方案
 - PDO
-- 过滤，转义等
+    - `where('name = ?', 'lucky')`
+- 过滤、拦截、转义等
