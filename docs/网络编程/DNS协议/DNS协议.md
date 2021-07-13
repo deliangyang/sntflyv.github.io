@@ -1,7 +1,7 @@
 
 ## DNS 协议
 - 发起DNS查询 `dig blog.sourcedev.cc`
-- Wireshark抓包，过滤关键词 `dns` 即可
+- WireShark抓包，过滤关键词 `dns` 即可
 - DNS 服务器默认端口 53
 
 ### 查询
@@ -99,7 +99,7 @@ Domain Name System (response)
 
 - 一行是16个字节
 - 0xc0 为分隔符
-- `Name: deliangyang.github.io` 用 `0xc0 0x2f` 表示，offset为47，即第二行倒数第一个位置（16 * 3 - 1 0x0b 0x65 0x65 ...），所以反查到的上一个资源的地址（也就是他自己的Name）
+- `Name: deliangyang.github.io` 用 `0xc0 0x2f` 表示，offset为47，即第二行倒数第一个位置（16 * 3 - 1 0x0b 0x65 0x65 ...），所以反查到的前一个name的位置 
 ```
 0000   a7 28 81 80 00 01 00 05 00 00 00 00 04 62 6c 6f   .(...........blo
 0010   67 09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00   g.sourcedev.cc..
