@@ -1,7 +1,7 @@
 
 ## DNS 协议
 - 发起DNS查询 `dig blog.sourcedev.cc`
-- WireShark抓包，过滤关键词 `dns` 即可
+- Wireshark抓包，过滤关键词 `dns` 即可
 - DNS 服务器默认端口 53
 
 ### 查询
