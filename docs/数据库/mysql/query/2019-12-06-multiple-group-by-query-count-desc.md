@@ -7,7 +7,7 @@
 
 ### 过程
 
-![img](../../../assets/mysql/group-by.png)
+![img](../../../../assets/mysql/group-by.png)
 
 描述：
 按照c1,c2,c3分组，得到结果集  
