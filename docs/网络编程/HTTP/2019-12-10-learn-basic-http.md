@@ -7,7 +7,7 @@
 - 请求行和请求头部以 `\r\n` 分隔，请求数据与请求头部以 `\r\n\r\n` 分隔
 - 请求行之后是请求头部（即http header），header之后是请求数据，请求数据过大，会以多个数据包传输（这是TCP/IP范畴，这里就不详细介绍）
 - 请求行结构
-    - 请求方法
+    - 请求方法 GET/POST/HEAD/PUT/PATCH/OPTIONS/DELETE/CONNECT/TRACE
     - 请求路径URL
     - 协议版本 HTTP/1.0、 HTTP/1.1、HTTP/2.0
 - 响应体结构

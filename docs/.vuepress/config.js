@@ -1,7 +1,7 @@
 const sidebar = require('./sidebar')
 
 module.exports = {
-	title: 'sntflyv|技术博客',
+	title: 'sntflyv | 技术博客',
   description: 'thinking,技术分析,日常总结,杂七杂八',
   base: '/',
   themeConfig: {
