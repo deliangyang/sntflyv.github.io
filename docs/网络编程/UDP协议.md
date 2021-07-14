@@ -21,7 +21,7 @@
 ### checksum 计算
 - checksum中有两个长度值，具体为：`（数据长度 + 报头长度8）* 2`
 
-```
+```php
 <?php
 
 $udpHex = <<<HEX
@@ -49,7 +49,6 @@ d3 f7                   // source port
 HEX;
 
 // length = ( data length = 8 ) * 2
-
 
 $checkSum = 0x9d2c;
 
