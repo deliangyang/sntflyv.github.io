@@ -15,5 +15,28 @@ module.exports = {
       { text: 'Home', link: '/' },
     ],
     sidebar: sidebar,
+  },
+  plugins: [
+    [
+      '@vuepress/last-updated',
+      {
+        dateOptions:{
+          hour12: false
+        }
+      }
+    ],
+    '@vuepress/back-to-top',
+    'mermaidjs',
+    [ 
+      '@vuepress/search', {
+        searchMaxSuggestions: 10,
+        searchHotkeys: ['/', 's'],
+      }
+    ]
+  ],
+  markdown: {
+    config: md => {
+      md.use(require('markdown-it-mermaid'))
+    }
   }
 }
