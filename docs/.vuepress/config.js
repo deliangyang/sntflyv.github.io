@@ -13,6 +13,7 @@ module.exports = {
     editLinkText: 'Edit this page on GitLab',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Issues', link: 'https://github.com/deliangyang/sntflyv.github.io/issues'},
     ],
     sidebar: sidebar,
   },
