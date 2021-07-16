@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DNS 协议 | sntflyv | 技术博客</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="thinking,技术分析,日常总结,杂七杂八">
+    
+    <link rel="preload" href="/assets/css/0.styles.4d704760.css" as="style"><link rel="preload" href="/assets/js/app.4e42faac.js" as="script"><link rel="preload" href="/assets/js/2.f3e443b6.js" as="script"><link rel="preload" href="/assets/js/76.ddb2dc83.js" as="script"><link rel="prefetch" href="/assets/js/10.60b97d52.js"><link rel="prefetch" href="/assets/js/11.7fa4a3bd.js"><link rel="prefetch" href="/assets/js/12.cc942a86.js"><link rel="prefetch" href="/assets/js/13.0b9522df.js"><link rel="prefetch" href="/assets/js/14.e524fe91.js"><link rel="prefetch" href="/assets/js/15.221e8f3f.js"><link rel="prefetch" href="/assets/js/16.79810fa9.js"><link rel="prefetch" href="/assets/js/17.75ae810f.js"><link rel="prefetch" href="/assets/js/18.1f6717b5.js"><link rel="prefetch" href="/assets/js/19.f3624b31.js"><link rel="prefetch" href="/assets/js/20.7b83fd15.js"><link rel="prefetch" href="/assets/js/21.ed2b6d78.js"><link rel="prefetch" href="/assets/js/22.46866cda.js"><link rel="prefetch" href="/assets/js/23.1168270d.js"><link rel="prefetch" href="/assets/js/24.7654ff1d.js"><link rel="prefetch" href="/assets/js/25.834e450b.js"><link rel="prefetch" href="/assets/js/26.ea7edc87.js"><link rel="prefetch" href="/assets/js/27.ad5e0c16.js"><link rel="prefetch" href="/assets/js/28.d775b3e9.js"><link rel="prefetch" href="/assets/js/29.e7885007.js"><link rel="prefetch" href="/assets/js/3.5b751fce.js"><link rel="prefetch" href="/assets/js/30.a52d11d0.js"><link rel="prefetch" href="/assets/js/31.94f53f7d.js"><link rel="prefetch" href="/assets/js/32.2bc09d5e.js"><link rel="prefetch" href="/assets/js/33.b817e9f7.js"><link rel="prefetch" href="/assets/js/34.2fb6f640.js"><link rel="prefetch" href="/assets/js/35.f8993b16.js"><link rel="prefetch" href="/assets/js/36.cce88e78.js"><link rel="prefetch" href="/assets/js/37.a0751456.js"><link rel="prefetch" href="/assets/js/38.dd5a12c9.js"><link rel="prefetch" href="/assets/js/39.057d0fb5.js"><link rel="prefetch" href="/assets/js/4.414089ee.js"><link rel="prefetch" href="/assets/js/40.95c1da70.js"><link rel="prefetch" href="/assets/js/41.b8df6148.js"><link rel="prefetch" href="/assets/js/42.3367f85d.js"><link rel="prefetch" href="/assets/js/43.222fb15f.js"><link rel="prefetch" href="/assets/js/44.c75b63db.js"><link rel="prefetch" href="/assets/js/45.992d6f50.js"><link rel="prefetch" href="/assets/js/46.ef336ea8.js"><link rel="prefetch" href="/assets/js/47.25877915.js"><link rel="prefetch" href="/assets/js/48.93475c9f.js"><link rel="prefetch" href="/assets/js/49.7c3042db.js"><link rel="prefetch" href="/assets/js/5.afda96f2.js"><link rel="prefetch" href="/assets/js/50.9a471391.js"><link rel="prefetch" href="/assets/js/51.ac2605c8.js"><link rel="prefetch" href="/assets/js/52.8bf25d3a.js"><link rel="prefetch" href="/assets/js/53.013939f7.js"><link rel="prefetch" href="/assets/js/54.53710005.js"><link rel="prefetch" href="/assets/js/55.3b80eb8e.js"><link rel="prefetch" href="/assets/js/56.ffb4575a.js"><link rel="prefetch" href="/assets/js/57.b1cbece4.js"><link rel="prefetch" href="/assets/js/58.d3299cdc.js"><link rel="prefetch" href="/assets/js/59.51ec9243.js"><link rel="prefetch" href="/assets/js/6.f6bf8a96.js"><link rel="prefetch" href="/assets/js/60.e55a067c.js"><link rel="prefetch" href="/assets/js/61.7c8ff037.js"><link rel="prefetch" href="/assets/js/62.b9c629f8.js"><link rel="prefetch" href="/assets/js/63.5e10768f.js"><link rel="prefetch" href="/assets/js/64.d27ef4b5.js"><link rel="prefetch" href="/assets/js/65.d40db68d.js"><link rel="prefetch" href="/assets/js/66.c4838b28.js"><link rel="prefetch" href="/assets/js/67.e4195b66.js"><link rel="prefetch" href="/assets/js/68.0516ebcf.js"><link rel="prefetch" href="/assets/js/69.b1da4adf.js"><link rel="prefetch" href="/assets/js/7.24af9454.js"><link rel="prefetch" href="/assets/js/70.619290df.js"><link rel="prefetch" href="/assets/js/71.f328b9b3.js"><link rel="prefetch" href="/assets/js/72.76b4287d.js"><link rel="prefetch" href="/assets/js/73.1c85d663.js"><link rel="prefetch" href="/assets/js/74.176f2264.js"><link rel="prefetch" href="/assets/js/75.515eb8c9.js"><link rel="prefetch" href="/assets/js/77.c574e864.js"><link rel="prefetch" href="/assets/js/78.d1ae39fc.js"><link rel="prefetch" href="/assets/js/79.dfb456a5.js"><link rel="prefetch" href="/assets/js/8.a8c296fb.js"><link rel="prefetch" href="/assets/js/80.85d66638.js"><link rel="prefetch" href="/assets/js/81.9dcf28e1.js"><link rel="prefetch" href="/assets/js/82.7d0d109b.js"><link rel="prefetch" href="/assets/js/83.dd00c64c.js"><link rel="prefetch" href="/assets/js/84.2d116959.js"><link rel="prefetch" href="/assets/js/9.4c2ff49b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4d704760.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">sntflyv | 技术博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="https://github.com/deliangyang/sntflyv.github.io/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Issues
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/deliangyang/sntflyv.github.io/tree/master/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="https://github.com/deliangyang/sntflyv.github.io/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Issues
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/deliangyang/sntflyv.github.io/tree/master/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/linux/2019/2019-12-17-grep-awk-sed-sort-etc" class="sidebar-heading clickable"><span>linux</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/openresty/CDN" class="sidebar-heading clickable"><span>openresty</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/一些想法/2019-12-19-my-life" class="sidebar-heading clickable"><span>一些想法</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/一些收藏/2019-12-05-my-collection" class="sidebar-heading clickable"><span>一些收藏</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/信息安全对抗/web安全/CSRF攻击" class="sidebar-heading clickable"><span>信息安全对抗</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/前端知识/2019-12-23-parse-excel-time" class="sidebar-heading clickable"><span>前端知识</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/大数据/ClickHouse/table引擎" class="sidebar-heading clickable"><span>大数据</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/数据库/mysql/2019-12-24-diff-database-fields" class="sidebar-heading clickable"><span>数据库</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/机器学习/tensorflow-推荐系统" class="sidebar-heading clickable"><span>机器学习</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/算法/红黑树" class="sidebar-heading clickable"><span>算法</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/编程语言/Scala/basic" class="sidebar-heading clickable"><span>编程语言</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/网络编程/DNS协议/DNS协议" class="sidebar-heading clickable open active"><span>网络编程</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/网络编程/DNS协议/DNS协议" class="sidebar-heading clickable open active"><span>DNS协议</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/网络编程/DNS协议/DNS协议.html" class="active sidebar-link">DNS协议</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/网络编程/DNS协议/DNS协议.html#dns-协议" class="sidebar-link">DNS 协议</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/网络编程/HTTP/2019-12-10-learn-basic-http" class="sidebar-heading clickable"><span>HTTP</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/网络编程/ICMP.html" class="sidebar-link">ICMP</a></li><li><a href="/网络编程/TCP_IP协议栈.html" class="sidebar-link">TCP_IP协议栈</a></li><li><a href="/网络编程/UDP协议.html" class="sidebar-link">UDP协议</a></li><li><a href="/网络编程/滑动窗口.html" class="sidebar-link">滑动窗口</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/股票研究/专业名词解释" class="sidebar-heading clickable"><span>股票研究</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/读后感/2021/自私的基因-癌症传" class="sidebar-heading clickable"><span>读后感</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="dns-协议"><a href="#dns-协议" class="header-anchor">#</a> DNS 协议</h2> <ul><li>发起DNS查询 <code>dig blog.sourcedev.cc</code></li> <li>WireShark抓包，过滤关键词 <code>dns</code> 即可</li> <li>DNS 服务器默认端口 53</li></ul> <h3 id="查询"><a href="#查询" class="header-anchor">#</a> 查询</h3> <h4 id="数据包二进制dump"><a href="#数据包二进制dump" class="header-anchor">#</a> 数据包二进制dump</h4> <div class="language- extra-class"><pre class="language-text"><code>0000   4c f0 01 20 00 01 00 00 00 00 00 01 03 77 77 77   L.. .........www
+0010   09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00 01   .sourcedev.cc...
+0020   00 01 00 00 29 10 00 00 00 00 00 00 00            ....)........
+</code></pre></div><h4 id="可视化数据结构"><a href="#可视化数据结构" class="header-anchor">#</a> 可视化数据结构</h4> <div class="language- extra-class"><pre class="language-text"><code>Domain Name System (query)
+    Transaction ID: 0x4cf0
+    Flags: 0x0120 Standard query
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 1
+    Queries
+        www.sourcedev.cc: type A, class IN
+            Name: www.sourcedev.cc
+            [Name Length: 16]
+            [Label Count: 3]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Additional records
+        &lt;Root&gt;: type OPT
+    [Response In: 17]
+</code></pre></div><h3 id="应答"><a href="#应答" class="header-anchor">#</a> 应答</h3> <h4 id="数据包二进制dump-2"><a href="#数据包二进制dump-2" class="header-anchor">#</a> 数据包二进制dump</h4> <div class="language- extra-class"><pre class="language-text"><code>0000   4c f0 81 80 00 01 00 01 00 00 00 00 03 77 77 77   L............www
+0010   09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00 01   .sourcedev.cc...
+0020   00 01 c0 0c 00 01 00 01 00 00 02 58 00 04 2a c0   ...........X..*.
+0030   4e 39                                             N9
+</code></pre></div><h4 id="可视化数据结构-2"><a href="#可视化数据结构-2" class="header-anchor">#</a> 可视化数据结构</h4> <ul><li>权威服务器名称只是存了一个数值（数据包data所在位置offset开始位置），这个操作可以减少数据包的大小</li></ul> <div class="language- extra-class"><pre class="language-text"><code>Domain Name System (response)
+    Transaction ID: 0x4cf0
+    Flags: 0x8180 Standard query response, No error
+    Questions: 1
+    Answer RRs: 1
+    Authority RRs: 0
+    Additional RRs: 0
+    Queries
+        www.sourcedev.cc: type A, class IN
+            Name: www.sourcedev.cc
+            [Name Length: 16]
+            [Label Count: 3]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Answers
+        www.sourcedev.cc: type A, class IN, addr 42.192.78.57
+    [Request In: 15]
+    [Time: 0.058614000 seconds]
+</code></pre></div><h4 id="分析answers部分的数据结构"><a href="#分析answers部分的数据结构" class="header-anchor">#</a> 分析Answers部分的数据结构</h4> <div class="language- extra-class"><pre class="language-text"><code>    Queries
+        blog.sourcedev.cc: type A, class IN
+            Name: blog.sourcedev.cc
+            [Name Length: 17]
+            [Label Count: 3]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Answers
+        blog.sourcedev.cc: type CNAME, class IN, cname deliangyang.github.io
+            Name: blog.sourcedev.cc
+            Type: CNAME (Canonical NAME for an alias) (5)
+            Class: IN (0x0001)
+            Time to live: 509
+            Data length: 23
+            CNAME: deliangyang.github.io
+        deliangyang.github.io: type A, class IN, addr 185.199.108.153
+            Name: deliangyang.github.io
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 509
+            Data length: 4
+            Address: 185.199.108.153
+    [Request In: 39]
+    [Time: 0.062407000 seconds]
+</code></pre></div><ul><li>一行是16个字节</li> <li>0xc0 为分隔符</li> <li><code>Name: deliangyang.github.io</code> 用 <code>0xc0 0x2f</code> 表示，offset为47，即第二行倒数第一个位置（16 * 3 - 1 0x0b 0x65 0x65 ...），所以反查到的前一个name的位置</li></ul> <div class="language- extra-class"><pre class="language-text"><code>0000   a7 28 81 80 00 01 00 05 00 00 00 00 04 62 6c 6f   .(...........blo
+0010   67 09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00   g.sourcedev.cc..
+0020   01 00 01 c0 0c 00 05 00 01 00 00 01 fd 00 17 0b   ................
+0030   64 65 6c 69 61 6e 67 79 61 6e 67 06 67 69 74 68   deliangyang.gith
+0040   75 62 02 69 6f 00 c0 2f 00 01 00 01 00 00 01 fd   ub.io../........
+0050   00 04 b9 c7 6c 99 c0 2f 00 01 00 01 00 00 01 fd   ....l../........
+0060   00 04 b9 c7 6e 99 c0 2f 00 01 00 01 00 00 01 fd   ....n../........
+0070   00 04 b9 c7 6f 99 c0 2f 00 01 00 01 00 00 01 fd   ....o../........
+0080   00 04 b9 c7 6d 99                                 ....m.
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/deliangyang/sntflyv.github.io/edit/master/docs/网络编程/DNS协议/DNS协议.md" target="_blank" rel="noopener noreferrer">Edit this page on GitLab</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/16/2021, 16:53:27</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/编程语言/编译原理/虚拟机.html" class="prev">
+        虚拟机
+      </a></span> <span class="next"><a href="/网络编程/HTTP/2019-12-10-learn-basic-http.html">
+        2019-12-10-learn-basic-http
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.4e42faac.js" defer></script><script src="/assets/js/2.f3e443b6.js" defer></script><script src="/assets/js/76.ddb2dc83.js" defer></script>
+  </body>
+</html>
