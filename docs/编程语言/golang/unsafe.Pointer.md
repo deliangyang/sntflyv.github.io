@@ -82,4 +82,9 @@ func main() {
 func print1() {
 	println("hello world")
 }
+
+// output:
+// 0x10a4ca0
+// 0x10d0e80  正确的函数指针地址
+// hello world
 ```
