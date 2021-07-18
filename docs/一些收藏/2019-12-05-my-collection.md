@@ -7,4 +7,7 @@
 - [aceld](https://github.com/aceld/golang)
 - [chai2010](https://github.com/chai2010/go-ast-book)
 - [codedump](https://www.codedump.info/)
+
+## golang 博客
+- [Go 语言原本](https://golang.design/under-the-hood/)
 - [Go 语言设计与实现](https://draveness.me/golang/)
