@@ -12,8 +12,11 @@ module.exports = {
     editLinks: true,
     editLinkText: 'Edit this page on GitLab',
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Issues', link: 'https://github.com/deliangyang/sntflyv.github.io/issues'},
+      { text: '首页', link: '/' },
+      { text: '生活', link: '/生活/运动/跑步', },
+      { text: '读后感', link: '/读后感/', },
+      { text: '一些收藏', link: '/一些收藏/', },
+      { text: '意见反馈', link: 'https://github.com/deliangyang/sntflyv.github.io/issues'},
     ],
     sidebar: sidebar,
   },

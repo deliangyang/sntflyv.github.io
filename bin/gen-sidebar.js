@@ -8,13 +8,16 @@ const WORK_PATH = process.argv[2] || 'docs'
 // 去掉文档前缀 docs/
 const re_prefix = new RegExp(`^${WORK_PATH}/?`);
 
+// 过滤的目录
+const re_skip_dir = new RegExp(`/test/`)
+
 const travel = (dir, callback) => {
   fs.readdirSync(dir).forEach((file) => {
     var pathname = path.join(dir, file)
     if (fs.statSync(pathname).isDirectory()) {
       travel(pathname, callback)
     } else {
-      if (/\.md$/.test(pathname) && !/party-api/.test(pathname) && !/IM/.test(pathname)) {
+      if (/\.md$/.test(pathname) && !re_skip_dir.test(pathname)) {
         callback(
           pathname.replace(/\.md$/, '').replace(re_prefix, '')
         )
@@ -119,7 +122,22 @@ const parseTree = (node, path) => {
 
 let sidebar = parseTree(node, '')
 
-let json_result = JSON.stringify(sidebar)
+let navPath = {'生活': '/生活/', '读后感': '/读后感/', '一些收藏': '/一些收藏/'}
+
+let newSiderBar = {}
+for (let nav in navPath) {
+  newSiderBar[navPath[nav]] = []
+}
+// 字典优先匹配原则
+newSiderBar['/'] = []
+
+for (let idx in sidebar) {
+  let title = sidebar[idx]['title']
+  let key = navPath[title] || '/'
+  newSiderBar[key].push(sidebar[idx])
+}
+
+let json_result = JSON.stringify(newSiderBar)
   .replace(/README/g, '')
 
 console.log(
