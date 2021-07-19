@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const fs = require('fs')
-const path = require('path')
+const path = require('path');
+const { exit } = require('process');
 
 // 文档目录
 const WORK_PATH = process.argv[2] || 'docs'
@@ -33,9 +34,7 @@ var Node = function() {
 
 Node.prototype = {
   toString: function () {
-    return this.data === 'README'
-      ? ''
-      : this.data
+    return this.data
   },
 
   getData: function() {
@@ -85,21 +84,37 @@ const parseTree = (node, path) => {
     if (datum.children) {
       children.push(...parseTree(datum, _path))
     }
-    if (children.length > 0) {
-      _path = children[0]['path']
-    }
 
-    if (/^\/[^\/]+$/.test(_path)) {
-      try {
-        const stat = fs.lstatSync((WORK_PATH + _path).replace(/^\//, ''))
-        if (stat.isDirectory()) {
+    let hasReadMe = false
+    for (let idx in children) {
+      if (children[idx].title.toUpperCase() === 'README') {
+        hasReadMe = true
+        children.splice(idx, 1)
+        if (!_path.endsWith('/')) {
           _path += '/'
         }
-      } catch(e) {
-        console.error(
-          WORK_PATH,
-          _path
-        )
+        break
+      }
+    }
+
+    if (!hasReadMe) {
+      if (children.length > 0) {
+        _path = children[0]['path']
+      }
+  
+      if (/^\/[^\/]+$/.test(_path)) {
+        try {
+          const stat = fs.lstatSync((WORK_PATH + _path).replace(/^\//, ''))
+          if (stat.isDirectory()) {
+            _path += '/'
+          }
+        } catch(e) {
+          console.error(
+            WORK_PATH,
+            _path
+          )
+          continue
+        }
       }
     }
 
@@ -141,5 +156,6 @@ let json_result = JSON.stringify(newSiderBar)
   .replace(/README/g, '')
 
 console.log(
-  'module.exports = ' + json_result
+  'module.exports = ' + 
+  json_result
 )
