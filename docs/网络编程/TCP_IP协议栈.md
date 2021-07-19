@@ -23,3 +23,24 @@ ip.dst==10.0.2.25 or ip.addr==10.0.2.25
 ### Wireshark
 
 ![img](../../assets/wireshark:tcp.png)
+
+### TCP/IP 分层
+#### 四层
+
+```mermaid
+graph LR;
+    网络接口层-->网络互连层IP-->传输层TCP-->应用层HTTP协议等;
+```
+
+#### OSI七层协议
+
+```mermaid
+graph LR;
+    物理层-双绞线-光缆
+    -->数据链路层-wifi-internet
+    -->网络层IP
+    -->传输层TCP
+    -->会话层
+    -->表示层
+    -->应用层HTTP协议等;
+```
