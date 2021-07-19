@@ -1,4 +1,5 @@
 const sidebar = require('./sidebar')
+const nav = require('./nav')
 
 module.exports = {
 	title: 'sntflyv | 技术博客',
@@ -11,13 +12,7 @@ module.exports = {
     docsBranch: 'master',
     editLinks: true,
     editLinkText: 'Edit this page on GitLab',
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '生活', link: '/生活/运动/跑步', },
-      { text: '读后感', link: '/读后感/', },
-      { text: '一些收藏', link: '/一些收藏/', },
-      { text: '意见反馈', link: 'https://github.com/deliangyang/sntflyv.github.io/issues'},
-    ],
+    nav: nav,
     sidebar: sidebar,
   },
   plugins: [
@@ -42,5 +37,10 @@ module.exports = {
     config: md => {
       md.use(require('markdown-it-mermaid'))
     }
-  }
+  },
+  extraWatchFiles: [
+    // 相对路径貌似不得行，还是用绝对路径ok
+    __dirname + '/sidebar.js',
+    __dirname + '/nav.js',
+  ],
 }
