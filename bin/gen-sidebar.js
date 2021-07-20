@@ -137,7 +137,7 @@ const parseTree = (node, path) => {
 
 let sidebar = parseTree(node, '')
 
-let navs = ['生活', '读后感', '一些收藏', ]
+let navs = ['生活', '读后感', '一些收藏', '经济', ]
 
 let navPath = {}
 navs.forEach(function(nav) {
