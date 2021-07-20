@@ -22,7 +22,7 @@ module.exports = [
         items: [
           {
             text: '股票',
-            link: '/经济/股票研究',
+            link: '/经济/股票研究/',
           }
         ]
       }
