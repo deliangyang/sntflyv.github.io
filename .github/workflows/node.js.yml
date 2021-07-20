@@ -17,11 +17,25 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Build and Deploy
-        uses: testthedocs/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BUILD_DIR: ./docs/.vuepress/dist/ # The folder, the action should deploy.
-          BUILD_SCRIPT: npm install && npm run docs:build && cp CNAME docs/.vuepress/dist # The build script the action should run prior to deploying.
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install
+    - run: yarn docs:build
+    - run: cp CNAME docs/.vuepress/dist
+    - name: commit push
+      run: |
+        rm -rf .git
+        cd docs/.vuepress/dist
+        git config --global init.defaultBranch gh-pages
+        git init
+        git branch -m gh-pages
+        git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        git config --global user.name 'sntfly'
+        git config --global user.email 'yang623601391@gmail.com'
+        git add .
+        git commit -m "auto build"
+        git push --set-upstream origin gh-pages -f
