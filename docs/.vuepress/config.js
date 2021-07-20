@@ -1,5 +1,7 @@
 const sidebar = require('./sidebar')
 const nav = require('./nav')
+const t = require('./t')
+var moment = require('moment')
 
 module.exports = {
 	title: 'sntflyv | 技术博客',
@@ -7,6 +9,7 @@ module.exports = {
   base: '/',
   themeConfig: {
     repo: 'https://github.com/deliangyang/sntflyv.github.io/tree/master/docs',
+    repoLabel: '更新:' + moment(t.lastTime).utcOffset("+08:00").format('YYYY-MM-DD HH:mm:ss'),
     docsRepo: 'https://github.com/deliangyang/sntflyv.github.io',
 		docsDir: 'docs',
     docsBranch: 'master',

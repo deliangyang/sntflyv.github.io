@@ -24,7 +24,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: node bin/gen-sidebar.js > docs/.vuepress/sidebar.js
     - run: yarn docs:build
     - run: cp CNAME docs/.vuepress/dist
     - name: commit push
