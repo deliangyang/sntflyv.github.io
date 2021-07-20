@@ -149,13 +149,15 @@ for (let nav in navPath) {
   newSiderBar[navPath[nav]] = []
 }
 // 字典优先匹配原则
-newSiderBar['/'] = []
+newSiderBar['/t/'] = []
 
 for (let idx in sidebar) {
   let title = sidebar[idx]['title']
-  let key = navPath[title] || '/'
+  let key = navPath[title] || '/t/'
   newSiderBar[key].push(sidebar[idx])
 }
+
+newSiderBar['/t/'] = newSiderBar['/t/'][0].children
 
 let json_result = JSON.stringify(newSiderBar)
   .replace(/README/g, '')
