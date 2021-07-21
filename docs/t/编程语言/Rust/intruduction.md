@@ -82,3 +82,9 @@ Rustc src/main.rs
 Rust可执行程序一定需要一个入口文件，和C/C++一样，需要一个`manin`函数，关键词`fn`表示函数，宏`println!`可以帮助我们打印输出。
 为什么说长得像函数的`println!`是宏，如果你观察仔细的话，你会发现宏是在函数后面增加了一个感叹号`!`，这个标识标识它就是宏。
 关于宏的介绍，后面我会弄个专栏来介绍它。宏不管是在C还是Rust中，都十分的强大。相信你也会喜欢这门语言的。
+
+### 学习案例
+
+1. [test-work](https://github.com/deliangyang/test-work)
+2. [rust-demo](https://github.com/deliangyang/rust-demo)
+3. [leetcode](https://github.com/deliangyang/leetcode.rs)
