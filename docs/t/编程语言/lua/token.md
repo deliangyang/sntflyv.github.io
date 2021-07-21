@@ -1,9 +1,9 @@
 
-### 每种语言都会有自己的token（词法单元），包含关键词、操作符、Identifier、数字、字符串、etc.
+### 每种语言都会有自己的token（词法单元）
+- 包含关键词、操作符、Identifier、数字、字符串、etc.
 
 #### token的定义
-
-枚举`RESERVED`是和`luaX_tokens`一一对应的
+- 枚举`RESERVED`是和`luaX_tokens`一一对应的
 
 llex.h:26  
 ```c

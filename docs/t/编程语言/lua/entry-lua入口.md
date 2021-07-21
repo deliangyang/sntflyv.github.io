@@ -16,12 +16,11 @@ lua_pushcfunction(L, &pmain);  /* to call 'pmain' in protected mode */
 1. 获取参数
 2. 检查版本
 3. 加载标准库
-3. 命令行执行脚本 
+4. 命令行执行脚本 
 ```shell script
 lua -e "pirnt(1)"
 ```
-
-4. handle_script执行脚本，先通过`  status = luaL_loadfile(L, fname);`加载文件
+5. handle_script执行脚本，先通过`  status = luaL_loadfile(L, fname);`加载文件
 ```c
 status = luaL_loadfile(L, fname);
 if (status == LUA_OK) {
@@ -38,9 +37,7 @@ runargs(L, argv, script)        // lua -e/-l
 
 docall()
 
-
 status = lua_pcall(L, narg, nres, base);
-
 
 #define lua_pcall(L,n,r,f)	lua_pcallk(L, (n), (r), (f), 0, NULL)
 lua_pcallk()

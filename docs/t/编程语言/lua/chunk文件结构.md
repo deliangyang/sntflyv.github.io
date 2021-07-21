@@ -1,5 +1,5 @@
 
-### lua chunk文件结构
+### Lua chunk文件结构
 
 - header
 - prototype
@@ -34,9 +34,9 @@ hexdump -C luac.out
 --]]
 ```
 
-### lua header
+### Lua header
 
-#### lua签名
+#### Lua签名
 ```c
 /* mark for precompiled code ('<esc>Lua') */
 #define LUA_SIGNATURE	"\x1bLua"
