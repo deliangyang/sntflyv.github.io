@@ -30,5 +30,6 @@ module.exports = [
   },
   { text: '读后感', link: '/读后感/', },
   { text: '一些收藏', link: '/一些收藏/', },
+  { text: '关于我', link: '/关于我/', },
   { text: '意见反馈', link: 'https://github.com/deliangyang/sntflyv.github.io/issues/new'},
 ]
