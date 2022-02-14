@@ -1,6 +1,12 @@
 ## mermaid 试用
 
-![Image](9cbda0becbf6460897d59d5176ef4a55.png)
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
 
 ### 参考资料
 
