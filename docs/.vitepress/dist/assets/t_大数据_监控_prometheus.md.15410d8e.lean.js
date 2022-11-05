@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as r}from"./app.9e51ea0e.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"t/\u5927\u6570\u636E/\u76D1\u63A7/prometheus.md"}'),o={name:"t/\u5927\u6570\u636E/\u76D1\u63A7/prometheus.md"};function a(s,c,n,p,m,_){return r(),t("div")}const f=e(o,[["render",a]]);export{i as __pageData,f as default};

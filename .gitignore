@@ -1,3 +1,5 @@
 /docs/.vuepress/sidebar.js
 /node_modules/
 /docs/.vuepress/dist/
+/docs/.vitepress/dist/
+/docs/.vitepress/sidebar.js
