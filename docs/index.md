@@ -19,10 +19,10 @@ hero:
 features:
   - title: 编程技术
     details: 语言大杂烩，喜欢折腾各种语法糖
-  - title: 读书
-    details: 读后感
+  - title: 读书 & 观影
+    details: 读后感、观后感？
   - title: 收藏大拿技术博客
     details: 提问的智慧
   - title: 工作、学习、生活平衡
-    details: 羽毛球，编程
+    details: 羽毛球、编程、运动、厨艺修炼、去哪里玩？
 ---

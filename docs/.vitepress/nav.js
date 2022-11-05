@@ -5,6 +5,15 @@ module.exports = [
     ariaLabel: '生活&运动',
     items: [
       {
+        text: '健康饮食',
+        items: [
+          {
+            text: '健康饮食',
+            link: '/生活/健康饮食/日常豆浆制作', 
+          },
+        ]
+      },
+      {
         text: '运动',
         items: [
           {

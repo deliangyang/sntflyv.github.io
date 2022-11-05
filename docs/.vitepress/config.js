@@ -12,6 +12,8 @@ export default defineConfig({
   base: '/',
   lastUpdated: true,
   themeConfig: {
+    search: true,
+    searchMaxSuggestions: 10,
     editLink: {
       pattern: "https://github.com/deliangyang/sntflyv.github.io/edit/master/docs/:path",
       text: "Edit this page on Github"
