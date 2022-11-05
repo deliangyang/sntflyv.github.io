@@ -10,7 +10,12 @@ export default defineConfig({
 	title: 'sntflyv的技术博客',
   description: 'thinking,技术分析,日常总结,杂七杂八',
   base: '/',
+  lastUpdated: true,
   themeConfig: {
+    editLink: {
+      pattern: "https://github.com/deliangyang/sntflyv.github.io/edit/master/docs/:path",
+      text: "Edit this page on Github"
+    },
     repo: 'https://github.com/deliangyang/sntflyv.github.io/tree/master/docs',
     repoLabel: '更新:' + moment(t.lastTime).utcOffset("+08:00").format('YYYY-MM-DD HH:mm:ss'),
     docsRepo: 'https://github.com/deliangyang/sntflyv.github.io',

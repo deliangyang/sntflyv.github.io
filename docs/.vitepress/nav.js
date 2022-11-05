@@ -1,5 +1,5 @@
 module.exports = [
-  { text: '技术', link: '/t/' },
+  { text: '技术博客', link: '/t/' },
   { 
     text: '生活', 
     ariaLabel: '生活&运动',

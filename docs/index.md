@@ -1,6 +1,28 @@
+---
+layout: home
 
-> 成为一名Researcher之前的技术分享，以及分享一些喜好的涉猎领域。研究和学习可能是一个痛并快乐的过程，坚持住，一定会成功的（如果没有成功就是我瞎说的）。
+title: sntflyv的技术博客
+titleTemplate: 分享日常学习到的新技术
 
-::: tip 声明
-1. 本站言论不构成任何法律依据
-:::
+hero:
+  name: sntflyv的技术博客
+  text: 记录自己的学习过程
+  tagline: 
+  actions:
+    - theme: brand
+      text: Get Started
+      link: /t/
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/deliangyang/sntflyv.github.io
+
+features:
+  - title: 编程技术
+    details: 语言大杂烩，喜欢折腾各种语法糖
+  - title: 读书
+    details: 读后感
+  - title: 收藏大拿技术博客
+    details: 提问的智慧
+  - title: 工作、学习、生活平衡
+    details: 羽毛球，编程
+---
