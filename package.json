@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "docs:dev": "sh bin/init.sh && vuepress dev docs",
-    "docs:build": "sh bin/init.sh && vuepress build docs"
+    "docs:dev": "sh bin/init.sh && vitepress dev docs",
+    "docs:build": "sh bin/init.sh && vitepress build docs"
   },
+  "license": "MIT",
   "author": "yang623601391@gmail.com",
   "dependencies": {
     "mermaid": "^8.5.1",
@@ -14,6 +15,8 @@
     "@vuepress/plugin-back-to-top": "^1.5.1",
     "@vuepress/shared-utils": "^1.5.0",
     "markdown-it-emoji": "^1.4.0",
+    "vitepress": "^1.0.0-alpha.27",
+    "vue": "^3.2.41",
     "vuepress": "^1.8.0",
     "vuepress-plugin-mermaidjs": "^1.5.1"
   }

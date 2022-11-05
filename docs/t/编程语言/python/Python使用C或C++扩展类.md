@@ -271,7 +271,7 @@ print(cs.first)
 print(cs.number)
 ```
 ### 结果输出
-```output
+```text
 ['__class__',
  '__delattr__',
  '__dir__',

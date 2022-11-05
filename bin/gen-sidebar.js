@@ -29,7 +29,7 @@ const travel = (dir, callback) => {
 
 var Node = function() {
   this.data = null
-  this.children = {}
+  this.items = {}
 }
 
 Node.prototype = {
@@ -46,11 +46,11 @@ Node.prototype = {
   },
 
   hasData: function (ele) {
-    return ele in this.children
+    return ele in this.items
   },
 
   isEmpty: function () {
-    return JSON.stringify(this.children) === '{}'
+    return JSON.stringify(this.items) === '{}'
   },
 
 }
@@ -60,9 +60,9 @@ TireTree.prototype = {
   insert: function (node, data) {
     data.forEach((datum) => {
       if (!node.hasData(datum)) {
-        node.children[datum] = new Node()
+        node.items[datum] = new Node()
       }
-      node = node.children[datum]
+      node = node.items[datum]
       node.setData(datum)
     })
   }
@@ -74,61 +74,69 @@ travel(WORK_PATH, (pathname) => {
   tree.insert(node, pathname.split('/'))
 });
 
-const parseTree = (node, path) => {
+const parseTree = (node, link) => {
   let result = []
-  for (let sNode in node.children) {
-    const datum = node.children[sNode]
-    let children = []
-    const title = datum.toString()
-    let _path = path + '/' + datum.getData()
-    if (datum.children) {
-      children.push(...parseTree(datum, _path))
+  for (let sNode in node.items) {
+    const datum = node.items[sNode]
+    let items = []
+    const text = datum.toString()
+    let _link = link + '/' + datum.getData()
+    if (datum.items) {
+      items.push(...parseTree(datum, _link))
     }
 
     let hasReadMe = false
-    for (let idx in children) {
-      if (children[idx].title.toUpperCase() === 'README') {
+    for (let idx in items) {
+      if (items[idx].text.toUpperCase() === 'README') {
         hasReadMe = true
-        children.splice(idx, 1)
-        if (!_path.endsWith('/')) {
-          _path += '/'
+        items.splice(idx, 1)
+        if (!_link.endsWith('/')) {
+          _link += '/'
+        }
+        break
+      } else if (items[idx].text.toUpperCase() === 'INDEX') {
+        hasReadMe = true
+        items.splice(idx, 1)
+        if (!_link.endsWith('/')) {
+          _link += '/index'
         }
         break
       }
     }
 
     if (!hasReadMe) {
-      if (children.length > 0) {
-        _path = children[0]['path']
+      if (items.length > 0) {
+        _link = items[0]['link']
       }
   
-      if (/^\/[^\/]+$/.test(_path)) {
+      if (/^\/[^\/]+$/.test(_link)) {
         try {
-          const stat = fs.lstatSync((WORK_PATH + _path).replace(/^\//, ''))
+          const stat = fs.lstatSync((WORK_PATH + _link).replace(/^\//, ''))
           if (stat.isDirectory()) {
-            _path += '/'
+            _link += '/'
           }
         } catch(e) {
           console.error(
             WORK_PATH,
-            _path
+            _link
           )
           continue
         }
       }
     }
 
-    if (title.length <= 0) {
+    if (text.length <= 0) {
       continue
     }
 
     let tmp = {
-      title: title,
-      collapsable: true,
-      path: _path,
+      text: text,
+      collapsible: true,
+      link: _link,
+      items: [],
     }
-    if (children.length > 0) {
-      tmp['children'] = children
+    if (items.length > 0) {
+      tmp['items'] = items
     }
     result.push(tmp)
   }
@@ -152,12 +160,12 @@ for (let nav in navPath) {
 newSiderBar['/t/'] = []
 
 for (let idx in sidebar) {
-  let title = sidebar[idx]['title']
-  let key = navPath[title] || '/t/'
+  let text = sidebar[idx]['text']
+  let key = navPath[text] || '/t/'
   newSiderBar[key].push(sidebar[idx])
 }
 
-newSiderBar['/t/'] = newSiderBar['/t/'][0].children
+newSiderBar['/t/'] = newSiderBar['/t/'][0].items
 
 let json_result = JSON.stringify(newSiderBar)
   .replace(/README/g, '')
