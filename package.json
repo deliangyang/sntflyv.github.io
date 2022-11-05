@@ -3,6 +3,7 @@
     "docs:dev": "sh bin/init.sh && vitepress dev docs",
     "docs:build": "sh bin/init.sh && vitepress build docs"
   },
+  "license": "MIT",
   "author": "yang623601391@gmail.com",
   "dependencies": {
     "mermaid": "^8.5.1",

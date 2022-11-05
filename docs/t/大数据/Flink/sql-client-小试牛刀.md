@@ -13,7 +13,7 @@
 - deployment
     - 描述表程序提交集群的属性。
 
-```yml
+```yaml
 tables:
   - name: MyTableSource
     type: source-table
@@ -41,7 +41,7 @@ tables:
 ```
 
 ### CSV 数据
-```csv
+```text
 1,ab
 2,bc
 3,dc
