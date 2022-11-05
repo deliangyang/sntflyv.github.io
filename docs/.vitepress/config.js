@@ -12,6 +12,7 @@ export default defineConfig({
   base: '/',
   lastUpdated: true,
   themeConfig: {
+    appearance: 'dark',
     search: true,
     searchMaxSuggestions: 10,
     editLink: {

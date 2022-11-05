@@ -5,9 +5,10 @@
 
 ## 技术栈
 
-> PHP、Go、Rust、Python  
+> PHP、Go、Rust、Python、Scala、Perl  
 > Typescript、CSS（less）、Vue2/3  
-> grep、sed、awk
+> grep、sed、awk  
+> 精通正则表达式（火星文）
 
 
 ## 联系方式
