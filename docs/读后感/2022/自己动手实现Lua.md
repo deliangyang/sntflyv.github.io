@@ -35,9 +35,46 @@
 
 ## Lua语法和编译器
 
+```mermaid
+graph LR
+A[Source] -- Lexer --> B[Tokens]
+B[Tokens] -- Parser --> C[AST]
+C[AST] -- Codegen --> D[ByteCodes]
+```
+
 ### 词法分析
 
+词法分析器的作用是根据编程语言的词法规则，把源代码（字符流）分解为token流。
+token按其作用可以分为不同的类型，比较常见的类型：
+- 空白字符
+  - \r、\n、\t、\v、\f、\s
+- 注释
+  - 短注释、长注释
+- 关键字
+  - and、break、do、else、if、elseif、end、false、for、fuction、goto、in、nil、local、not、or、repeat、return、then、true、until、while
+- 标识符
+  - Identifier 变量命名
+- 字面量
+  - 数字字面变量，整数、浮点
+  - 字符串字面量
+- 运算符
+  - +、-、*、/、^、~、%、&、|、>>、<<等
+- 分隔符
+  - (、)、[、]、{、}、,、:、;等
+
 ### 抽象语法树AST
+
+语法规则定义了怎样的组合可以构成合法的程序。`词法分析阶段`根据`词法规则`将字符序列分解为token序列，`语法分析阶段`根据`语法规则`将token序列解析为抽象语法树（AST）。  
+
+例如： a * (b + c)
+
+```mermaid
+graph TB
+  A((*)) --> B((a))
+  A((*)) --> C((+))
+  C((+)) --> D((b))
+  C((+)) --> E((c))
+```
 
 ### 语法分析
 
