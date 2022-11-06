@@ -4,7 +4,7 @@ const t = require('./t')
 var moment = require('moment')
 
 import { defineConfig } from 'vitepress'
-
+import { MermaidMarkdown } from './theme/mermaid-markdown'
 
 export default defineConfig({
 	title: 'sntflyv的技术博客',
@@ -48,8 +48,11 @@ export default defineConfig({
     ]
   ],
   markdown: {
+    lineNumbers: true,
+    toc: { level: [1, 2, 3] },
     config: md => {
       // md.use(require('markdown-it-mermaid'))
+      md.use(MermaidMarkdown)
     }
   },
   extraWatchFiles: [
