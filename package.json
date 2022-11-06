@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "docs:dev": "sh bin/init.sh && vitepress dev docs",
+    "docs:dev": "sh bin/init.sh && vitepress dev docs --host=0.0.0.0",
     "docs:build": "sh bin/init.sh && vitepress build docs"
   },
   "license": "MIT",
