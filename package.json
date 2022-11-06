@@ -16,8 +16,6 @@
     "@vuepress/shared-utils": "^1.5.0",
     "markdown-it-emoji": "^1.4.0",
     "vitepress": "^1.0.0-alpha.27",
-    "vue": "^3.2.41",
-    "vuepress": "^1.8.0",
-    "vuepress-plugin-mermaidjs": "^1.5.1"
+    "vue": "^3.2.41"
   }
 }

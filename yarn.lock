@@ -6464,7 +6464,7 @@ merge2@^1.2.3:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-mermaid@^8.14.0, mermaid@^8.5.1:
+mermaid@^8.5.1:
   version "8.14.0"
   resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-8.14.0.tgz#ef589b0537f56d6340069070edb51719a4faba00"
   integrity sha512-ITSHjwVaby1Li738sxhF48sLTxcNyUAoWfoqyztL1f7J6JOLpHOuQPNLBb6lxGPUA0u7xP9IRULgvod0dKu35A==
@@ -9326,13 +9326,6 @@ vuepress-plugin-container@^2.0.2:
   dependencies:
     "@vuepress/shared-utils" "^1.2.0"
     markdown-it-container "^2.0.0"
-
-vuepress-plugin-mermaidjs@^1.5.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/vuepress-plugin-mermaidjs/-/vuepress-plugin-mermaidjs-1.9.1.tgz#48700399a36ef9fc4e4bdbda51b5dd219d524ce7"
-  integrity sha512-ZJiFyia/NMjnkCni7baaRaRxi4+SJG4DetgQ3PodlWITWVzxzOGlkBdwKzaBNIAa43NLQwgUu5Mgwe9nBZWl9w==
-  dependencies:
-    mermaid "^8.14.0"
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
