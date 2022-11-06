@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "yang623601391@gmail.com",
   "dependencies": {
-    "mermaid": "^8.5.1",
+    "mermaid": "^9.1.2",
     "moment": "^2.29.1",
     "vuepress": "^1.8.0"
   },
