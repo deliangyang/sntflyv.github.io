@@ -57,7 +57,7 @@ port_gateway() {
 ```bash
 vim /etc/ssh/sshd_config
 
-# 修改如下
+# 修改如下：（将远程端口转发绑定到非loopback地址，允许远程主机连接）
 # GatewayPorts yes
 
 # 重启ssh服务
@@ -67,10 +67,11 @@ service sshd restart
 
 ### 示例
 ```bash
-
 . ~/.bashrc
 
 # 内网穿透
 port_gateway 80 8080 ydl@ydl
 
+# 外网访问内部服务
+curl -I http://ydl:8080
 ```
