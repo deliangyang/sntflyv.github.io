@@ -1,9 +1,10 @@
 
 ## 背景
 
-远程服务器对外服务的端口关闭如redis 6379，mysql：3306等，但是不想对外暴漏端口，ssh：22可以登录远程服务器，想实现本地访问远程服务。
+1. 远程服务器对外服务的端口关闭如redis 6379，mysql：3306等，但是不想对外暴漏端口，ssh：22可以登录远程服务器，想实现本地访问远程服务。
+2. 公网访问内部服务，端口转发
 
-## 实现
+## 端口实现
 
 ```bash
 port_proxy () {
@@ -29,7 +30,7 @@ port_close () {
    4. -L local_socket:remote_socket
 
 ### 示例
-```
+```bash
 . ~/.bashrc
 
 # 建立端口转发
@@ -37,5 +38,39 @@ port_proxy 6369 ydl@ydl
 
 # 断开连接
 port_close 6369
+
+```
+
+## 内网穿透实现
+
+```bash
+port_gateway() {
+	LOCAL_PORT=$1
+	TARGET_PORT=$2
+	SSH_TARGET=$3
+	ssh -NR 127.0.0.1:${TARGET_PORT}:127.0.0.1:${LOCAL_PORT} ${SSH_TARGET}
+}
+```
+
+### sshd_config修改
+
+```bash
+vim /etc/ssh/sshd_config
+
+# 修改如下
+# GatewayPorts yes
+
+# 重启ssh服务
+service sshd restart
+```
+
+
+### 示例
+```bash
+
+. ~/.bashrc
+
+# 内网穿透
+port_gateway 80 8080 ydl@ydl
 
 ```
