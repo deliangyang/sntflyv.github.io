@@ -65,16 +65,50 @@ objdump -tT /usr/local/bin/redis-server
 sudo python ~/work/go-dev/bcc/tools/trace.py '/usr/local/bin/redis-server:createStringObject "%s" arg1'
 ```
 
-#### uretprobes 用户态程序函数返回的探针
+#### 查看函数参数
+```bash
+dd@dd-OptiPlex-3020:~$ sudo bpftrace -lv 'uprobe:/usr/local/bin/php:compile_string'
+WARNING: Cannot parse DWARF: libdw not available
+WARNING: No DWARF found for "/usr/local/bin/php", cannot show parameter info
+uprobe:/usr/local/bin/php:compile_string
+```
+
+#### uprobe 
+- 语法
+```
+uprobe: arg0, arg1, ..., argN
+uretprobe: retval
+```
+
+###
+```bash
+sudo bpftrace -e 'uprobe:/lib/x86_64-linux-gnu/libc.so.6:fopen { printf("fopen: %s\n", str(arg0)); }'
+Attaching 1 probe...
+fopen: /proc/meminfo
+fopen: /proc/meminfo
+```
 
 ## 查看追踪点
 
 ```bash
 sudo tplist-bpfcc
-
 ```
+
+## eBPF in Rust
+
+- aya
+
+
+## 什么是DWARF？
+
+译文来自[https://www.deepl.com/translator](https://www.deepl.com/translator)
+> DWARF is a widely used, standardized debugging data format. DWARF was originally designed along with Executable and Linkable Format (ELF), although it is independent of object file formats.[1] The name is a medieval fantasy complement to "ELF" that had no official meaning, although the backronym "Debugging With Arbitrary Record Formats" has since been proposed.[1]
+
+> DWARF是一种广泛使用的、标准化的调试数据格式。DWARF最初是与可执行和可链接格式（ELF）一起设计的，尽管它独立于对象文件格式。[1]这个名字是对 "ELF "的中世纪幻想的补充，没有正式的含义，尽管后来有人提出了 "用任意记录格式进行调试 "的后缀名。
 
 
 ## 引用
 
 1. [https://www.ebpf.top/post/ebpf-overview-part-5/](https://www.ebpf.top/post/ebpf-overview-part-5/)
+2. [bpf study](https://github.com/DavadDi/bpf_study)
+3. [PPT](https://github.com/gojue/ebpf-slide/)
