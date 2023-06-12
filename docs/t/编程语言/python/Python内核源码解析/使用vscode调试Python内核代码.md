@@ -2,7 +2,7 @@
 ## 下载Python源码
 
 ```bash
-wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz
+wget hxxps://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz
 tar -zvxf Python-3.10.7.tgz
 ```
 
@@ -81,3 +81,9 @@ make && make install
 1. 通过断点调试，可以看到Python内核的执行流程，可以更加直观的理解Python内核的执行流程。
 2. 可以观察Python内核的变量值，了解Python变量值的数据结构，以及数据的变化。
 3. 了解内核的调用栈，可以看到栈结构，以及调用栈的变化。
+
+---
+
+<i>本人热衷于编程语言底层实现原理。通过一些空闲时间阅读源码，记录自己的所学及心得。你的关注和鼓励是对我持续输出分享的动力，感谢，共同进步。</i>
+
+![公众号](./image/gzh.png)
