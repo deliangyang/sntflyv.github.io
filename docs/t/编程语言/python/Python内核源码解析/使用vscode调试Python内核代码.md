@@ -86,4 +86,4 @@ make && make install
 
 <i>本人热衷于编程语言底层实现原理。通过一些空闲时间阅读源码，记录自己的所学及心得。你的关注和鼓励是对我持续输出分享的动力，感谢，共同进步。</i>
 
-![公众号](https://mmbiz.qpic.cn/mmbiz_png/Pchz2E1Z2Cibxa4JYa9YmxWDLcm4CEPtG4zoXy3k6Tqf0hklge30ibpoDyicib0sYH6mpibwWgqkFvV22lLJXyX990g/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![公众号](image/gzh.png)
