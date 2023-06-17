@@ -138,4 +138,4 @@ int存储计算算法
 
 <i>本人非计算机专业自学成为一名程序员，已工作八年，有丰富的摸索、自学经验。热衷于编程语言底层实现原理。通过一些空闲时间阅读源码，记录自己的所学及心得。你的关注和鼓励是对我持续输出分享的动力，感谢，共同进步。</i>
 
-![公众号](https://mmbiz.qpic.cn/mmbiz_png/Pchz2E1Z2CibKb1O5t1KF4xo0xia3yXtByq2LTXzuxa4KY1SYBsMHicbcVvLkVp8w5TE7HqhjjDpsoudh0GaReM6Q/640)
+![公众号](image/gzh.png)
