@@ -19,7 +19,7 @@ eWFuZzYyMzYwMTM5MUBnbWFpbC5jb20K
 
 ## 公众号
 
-![公众号](../../assets/gzh.png)
+![公众号](../../assets/qrcode.jpeg)
 
 ## 随便说点
 
