@@ -11,7 +11,7 @@ export default defineConfig({
   base: '/',
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: 'https://qiniu.techgrow.cn/readmore/dist/readmore.css' },],
+    ['link', { rel: 'stylesheet', href: 'https://qiniu.techgrow.cn/readmore/dist/readmore.css' },],
     ['script', { src: 'https://qiniu.techgrow.cn/readmore/dist/readmore.js', }],
     ['script', {}, `var regex = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
     var isMobile = navigator.userAgent.match(regex);
