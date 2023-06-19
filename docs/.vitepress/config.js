@@ -19,11 +19,11 @@ export default defineConfig({
         try {
             var plugin = new ReadmorePlugin();
             plugin.init({
-                id: "VPContent",
+                id: "app",
                 blogId: "68666-8681174435998-054",
                 name: "sntflyv",
                 keyword: "验证码",
-                qrcode: "https://blog.sourcedev.cc/assets/gzh.4626a00e.png",
+                qrcode: "https://blog.sourcedev.cc/assets/qrcode.68d8a560.jpeg",
                 type: "vuepress v2",
                 height: "auto",
                 expires: "365",
