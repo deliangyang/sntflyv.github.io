@@ -19,7 +19,6 @@ export default defineConfig({
         try {
             var plugin = new ReadmorePlugin();
             plugin.init({
-                id: "app",
                 blogId: "68666-8681174435998-054",
                 name: "sntflyv",
                 keyword: "验证码",
@@ -28,7 +27,8 @@ export default defineConfig({
                 height: "auto",
                 expires: "365",
                 interval: "60",
-                random: "1"
+                random: "1",
+                pjaxSelector: "main.main"
             })
         } catch (e) {
             console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
