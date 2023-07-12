@@ -303,4 +303,4 @@ Python中采用的是开放寻址法，即当发生冲突时，就去寻找下�
 
 <i>本人非计算机专业自学成为一名程序员，已工作八年，有丰富的摸索、自学经验。热衷于编程语言底层实现原理。通过一些空闲时间阅读源码，记录自己的所学及心得。你的关注和鼓励是对我持续输出分享的动力，感谢，共同进步。喜欢就关注一下😍。</i>
 
-![公众号](https://mmbiz.qpic.cn/mmbiz_png/Pchz2E1Z2CibKb1O5t1KF4xo0xia3yXtByibXjUFcd60JO0CbhOF14GOz2CW8WyIQLmo2VFk3SsRofJzB0GKwl9Xw/640)
+![公众号](https://blog.sourcedev.cc/assets/gzh.23b8078c.png)
