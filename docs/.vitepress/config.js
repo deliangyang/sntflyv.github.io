@@ -2,8 +2,10 @@ const sidebar = require('./sidebar')
 const nav = require('./nav')
 const t = require('./t')
 var moment = require('moment')
+var taskLists = require('markdown-it-task-lists');
 import { defineConfig } from 'vitepress'
 import { MermaidMarkdown } from './theme/mermaid-markdown'
+import mathMarkdown from 'markdown-it-mathjax3'
 
 export default defineConfig({
   title: 'sntflyv的技术博客',
@@ -72,11 +74,12 @@ export default defineConfig({
     ],
   ],
   markdown: {
+    math: true,
     lineNumbers: true,
     toc: { level: [1, 2, 3] },
     config: md => {
       // md.use(require('markdown-it-mermaid'))
-      md.use(MermaidMarkdown)
+      md.use(MermaidMarkdown).use(taskLists).use(mathMarkdown)
     }
   },
   extraWatchFiles: [

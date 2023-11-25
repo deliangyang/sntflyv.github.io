@@ -6,6 +6,7 @@
   "license": "MIT",
   "author": "yang623601391@gmail.com",
   "dependencies": {
+    "markdown-it-task-lists": "^2.1.1",
     "mermaid": "^8.5.1",
     "moment": "^2.29.1",
     "vuepress": "^1.8.0"
@@ -15,6 +16,7 @@
     "@vuepress/plugin-back-to-top": "^1.5.1",
     "@vuepress/shared-utils": "^1.5.0",
     "markdown-it-emoji": "^1.4.0",
+    "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.0.0-alpha.27",
     "vue": "^3.2.41"
   }
