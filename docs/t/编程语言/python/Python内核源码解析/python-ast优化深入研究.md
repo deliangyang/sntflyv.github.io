@@ -104,6 +104,36 @@ fold_unaryop(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
 }
 ```
 
+Python 优化示例，按语法来说，not 1、~ 1、- 1、+ 1 都是由两个部分组成的，一个是操作符，一个是操作数。在 Python 语法树中，这些操作符都是一元操作符，操作数都是常量。在 Python 语法树优化过程中，如果操作数是常量，则可以直接计算出结果。如下所示，not 1、~ 1、- 1、+ 1 都被优化成了常量。
+
+```py
+import dis
+code = """
+a = not 1
+b = ~ 1
+c = - 1
+d = + 1
+"""
+dis.dis(code)
+```
+
+优化后的字节码
+```text
+  2           0 LOAD_CONST               0 (False)
+              2 STORE_NAME               0 (a)
+
+  3           4 LOAD_CONST               1 (-2)
+              6 STORE_NAME               1 (b)
+
+  4           8 LOAD_CONST               2 (-1)
+             10 STORE_NAME               2 (c)
+
+  5          12 LOAD_CONST               3 (1)
+             14 STORE_NAME               3 (d)
+             16 LOAD_CONST               4 (None)
+             18 RETURN_VALUE
+```
+
 ### fold_iter
 
 对于列表和集合，如果列表或集合中包含星号表达式，则直接返回。否则，将列表或集合转换成元组或冻结集合。如果转换成功，则将新的值赋值给 node 的 Constant.value，并将 node 的类型设置为 Constant_kind。
@@ -143,6 +173,8 @@ fold_iter(expr_ty arg, PyArena *arena, _PyASTOptimizeState *state)
 }
 ```
 
+fold_iter 需要一定的条件才会被触发优化。
+
 ### fold_compare
 
 对于比较操作符，如果操作符是 in 或 not in，且比较的对象是列表或集合，则将列表或集合转换成元组或冻结集合。如果转换成功，则将新的值赋值给 node 的 Constant.value，并将 node 的类型设置为 Constant_kind。
@@ -169,6 +201,25 @@ fold_compare(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
     }
     return 1;
 }
+```
+
+Python 示例
+
+```py
+import dis
+code = """
+1 in [1, 2, 3]
+"""
+dis.dis(code)
+```
+
+优化后的字节码, 可以看到列表被优化成了元组，元组的值是常量。
+
+```text
+  2           0 LOAD_CONST               0 (1)
+              2 LOAD_CONST               1 ((1, 2, 3))
+              4 CONTAINS_OP              0
+              6 RETURN_VALUE
 ```
 
 ### fold_subscr
@@ -225,6 +276,8 @@ fold_tuple(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
 for i in range(0):
    print(1)
 ```
+
+输出的字节码如下
 
 ```text
   2           0 LOAD_NAME                0 (range)
