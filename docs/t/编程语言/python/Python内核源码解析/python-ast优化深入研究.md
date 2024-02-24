@@ -196,6 +196,95 @@ fold_subscr(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
 }
 ```
 
+```py
+import ast
+import dis
+
+code = """\
+1 in [1, 2, 3]
+4 not in [2]
+for i in [3]:
+    pass
+"""
+print(ast.dump(ast.parse(code, mode='exec'), indent=4))
+# Module(
+#     body=[
+#         Expr(
+#             value=Compare(
+#                 left=Constant(value=1),
+#                 ops=[
+#                     In()],
+#                 comparators=[
+#                     List(
+#                         elts=[
+#                             Constant(value=1),
+#                             Constant(value=2),
+#                             Constant(value=3)],
+#                         ctx=Load())])),
+#         Expr(
+#             value=Compare(
+#                 left=Constant(value=4),
+#                 ops=[
+#                     NotIn()],
+#                 comparators=[
+#                     List(
+#                         elts=[
+#                             Constant(value=2)],
+#                         ctx=Load())])),
+#         For(
+#             target=Name(id='i', ctx=Store()),
+#             iter=List(
+#                 elts=[
+#                     Constant(value=3)],
+#                 ctx=Load()),
+#             body=[
+#                 Pass()],
+#             orelse=[])],
+#     type_ignores=[])
+dis.dis(code)
+#   1           0 LOAD_CONST               0 (1)
+#               2 LOAD_CONST               1 ((1, 2, 3))
+#               4 CONTAINS_OP              0
+#               6 POP_TOP
+
+#   2           8 LOAD_CONST               2 (4)
+#              10 LOAD_CONST               3 ((2,))
+#              12 CONTAINS_OP              1
+#              14 POP_TOP
+
+#   3          16 LOAD_CONST               4 ((3,))
+#              18 GET_ITER
+#         >>   20 FOR_ITER                 2 (to 26)
+#              22 STORE_NAME               0 (i)
+
+#   4          24 JUMP_ABSOLUTE           10 (to 20)
+
+#   3     >>   26 LOAD_CONST               5 (None)
+#              28 RETURN_VALUE
+```
+
+下面这个例子可以看到下标操作符的折叠优化，字符串的下标直接返回对应的字符。
+
+打印出来的抽象语法树可以看到，语法树结构不满足退出的判断条件，通过执行 PyObject_GetItem 获取到下标对应的字符。
+
+```py
+import ast
+import dis
+
+code = """\
+"1223"[1]
+"""
+print(ast.dump(ast.parse(code, mode='eval'), indent=4))
+# Expression(
+#     body=Subscript(
+#         value=Constant(value='1223'),
+#         slice=Constant(value=1),
+#         ctx=Load()))
+dis.dis(code)
+#   1           0 LOAD_CONST               0 ('2')
+#               2 RETURN_VALUE
+```
+
 ### fold_tuple
 
 对于元组，如果元组的上下文不是 Load，则直接返回。否则，调用 make_const_tuple 函数将元组转换成常量元组。如果转换成功，则将新的值赋值给 node 的 Constant.value，并将 node 的类型设置为 Constant_kind。
@@ -214,6 +303,31 @@ fold_tuple(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
 }
 ```
 
+如下示例可以看到元组的折叠优化，直接返回对应的常量值。
+
+```py
+import ast
+import dis
+
+code = """\
+(1, 2, 3)
+"""
+print(ast.dump(ast.parse(code, mode='exec'), indent=4))
+# Module(
+#     body=[
+#         Expr(
+#             value=Tuple(
+#                 elts=[
+#                     Constant(value=1),
+#                     Constant(value=2),
+#                     Constant(value=3)],
+#                 ctx=Load()))],
+#     type_ignores=[])
+dis.dis(code)
+#   1           0 LOAD_CONST               0 ((1, 2, 3))
+#               2 RETURN_VALUE
+```
+
 ## 思考
 
 通过这篇文章，我们了解了Python语法树的优化过程。在Python语法树的优化过程中，有很多种优化手段，如常量折叠优化、一元运算操作符的折叠优化、列表和集合的折叠优化、比较操作符的折叠优化、下标操作符的折叠优化、元组的折叠优化等。这些优化手段可以有效地提高Python程序的执行效率。
@@ -225,6 +339,8 @@ fold_tuple(expr_ty node, PyArena *arena, _PyASTOptimizeState *state)
 for i in range(0):
    print(1)
 ```
+
+字节码输出如下
 
 ```text
   2           0 LOAD_NAME                0 (range)
