@@ -5,6 +5,8 @@
 
 ### 编码器
 
+简单的数据结构如：None，bool，int，float，str 我们可以直接编码为JSON字符串。对于list和dict，我们可以使用递归的方式进行编码。
+
 ```py
 def json_encode(obj):
     if obj is None:
