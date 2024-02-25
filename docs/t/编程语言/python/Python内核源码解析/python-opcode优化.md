@@ -1,7 +1,7 @@
 
-Python内核源码中字节码的优化实现在文件`Python/compile.c`中，Python的字节码优化是通过`peephole`优化器实现的。`peephole`优化器是一个简单的局部优化器，它对字节码进行扫描，找到一些可以优化的地方，然后进行优化。`peephole`优化器的实现在`Python/peephole.c`中。`peephole`叫窥孔优化，是一种局部优化，它只对一小段代码进行优化，而不是对整个程序进行优化。
+Python 内核源码中字节码的优化实现在文件`Python/compile.c`中，Python 的字节码优化是通过`peephole`优化器实现的。`peephole`优化器是一个简单的局部优化器，它对字节码进行扫描，找到一些可以优化的地方，然后进行优化。`peephole`优化器的实现在`Python/peephole.c`中。`peephole`叫窥孔优化，是一种局部优化，它只对一小段代码进行优化，而不是对整个程序进行优化。
 
-compile.c 实现了AST到字节码的编译器，它的入口是`PyAST_Compile`函数。`PyAST_Compile`函数首先将AST转换为控制流图，然后对控制流图进行优化，最后将控制流图转换为字节码。
+compile.c 实现了 AST 到字节码的编译器，它的入口是`PyAST_Compile`函数。`PyAST_Compile`函数首先将 AST 转换为控制流图，然后对控制流图进行优化，最后将控制流图转换为字节码。
 
 compile.c 中的优化实现入口是`optimize_cfg`函数，它对字节码的控制流图进行优化。控制流图是一个有向图，图中的节点是基本块，边是控制流。基本块是一段代码，它没有入口，只有一个出口。控制流图是一个有向无环图，它的入口是函数的入口基本块，出口是函数的出口基本块。控制流图的优化是通过对基本块进行优化来实现的。
 
@@ -105,7 +105,7 @@ error:
 }
 ```
 
-当opcode为`LOAD_CONST`时，如果下一个opcode是`POP_JUMP_IF_FALSE`或`POP_JUMP_IF_TRUE`，则可以直接判断`LOAD_CONST`的值，然后根据判断结果直接跳转到目标位置。这样就可以减少一条指令的执行。switch分支中还有其它的指令优化。
+当 opcode 为`LOAD_CONST`时，如果下一个 opcode 是`POP_JUMP_IF_FALSE`或`POP_JUMP_IF_TRUE`，则可以直接判断`LOAD_CONST`的值，然后根据判断结果直接跳转到目标位置。这样就可以减少一条指令的执行。switch 分支中还有其它的指令优化。
 
 ### 清理基本块
 
@@ -162,5 +162,5 @@ clean_basic_block(basicblock *bb, int prev_lineno) {
 
 ### 总结
 
-Python的字节码优化是通过`peephole`优化器实现的，它是一个简单的局部优化器，对字节码进行扫描，找到一些可以优化的地方，然后进行优化。
+Python 的字节码优化是通过`peephole`优化器实现的，它是一个简单的局部优化器，对字节码进行扫描，找到一些可以优化的地方，然后进行优化。
 
