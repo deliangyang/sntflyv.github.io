@@ -88,3 +88,70 @@ True
         >>   10 LOAD_CONST               0 (None)
              12 RETURN_VALUE
 ```
+
+#### 仍需要验证一下是否是 AST 阶段优化的
+
+从如下 AST 输出可以看出，节点 UnaryOp 仍然保留，说明指令的优化不是在 AST 阶段，而是字节码优化阶段。
+
+```py
+>>> import ast
+>>> 
+>>> code = """\
+... def unot(x):
+...     if not x == 2:
+...         del x
+... """
+>>> print(ast.dump(ast.parse(code, mode='exec'), indent=4))
+Module(
+    body=[
+        FunctionDef(
+            name='unot',
+            args=arguments(
+                posonlyargs=[],
+                args=[
+                    arg(arg='x')],
+                kwonlyargs=[],
+                kw_defaults=[],
+                defaults=[]),
+            body=[
+                If(
+                    test=UnaryOp(
+                        op=Not(),
+                        operand=Compare(
+                            left=Name(id='x', ctx=Load()),
+                            ops=[
+                                Eq()],
+                            comparators=[
+                                Constant(value=2)])),
+                    body=[
+                        Delete(
+                            targets=[
+                                Name(id='x', ctx=Del())])],
+                    orelse=[])],
+            decorator_list=[])],
+    type_ignores=[])
+>>> 
+```
+
+### 回到内核源码
+
+```c
+static int
+unaryop(unaryop_ty op)
+{
+    switch (op) {
+    case Invert:
+        return UNARY_INVERT;
+    case Not:
+        return UNARY_NOT;
+    case UAdd:
+        return UNARY_POSITIVE;
+    case USub:
+        return UNARY_NEGATIVE;
+    default:
+        PyErr_Format(PyExc_SystemError,
+            "unary op %d should not be possible", op);
+        return 0;
+    }
+}
+```
