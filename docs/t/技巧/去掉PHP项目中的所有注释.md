@@ -12,7 +12,7 @@
 
 ## 碰壁，把数据规模想简单了
 
-VS Code 扫描文件，一个文件一个文件进行替换，当处理还剩 2000 个文件没有处理的时候，VS Code 崩溃退出了。难道是文件太多了？用命令 `find . -name "*.php" |wc -l`，统计 PHP 文件的数量，15000 多个文件，确实有点多。VS Code 替换项目中的文件不是遍历一个文件，替换一个文件，而是遍历完所有文件后，一次性替换所有的匹配内容。我猜这是为了保证替换的一致性，要么全部替换成功，要么全部替换失败。
+VS Code 扫描文件，一个文件一个文件进行替换，当处理还剩 2000 个文件没有处理的时候，VS Code 崩溃退出了。难道是文件太多了？用命令 `find . -name "*.php" |wc -l`，统计 PHP 文件的数量，15000 多个文件，确实有点多。VS Code 替换项目中的文件不是遍历一个文件，替换一个文件，而是遍历完所有文件后，一次性替换所有的匹配内容。我猜这是为了<b>保证替换的一致性，要么全部替换成功，要么全部替换失败</b>。
 
 ## 不断尝试
 
@@ -90,11 +90,9 @@ func removeComment(content string) string {
 
 ### 从语言的词法分析入手，移除注释相关的 token
 
-PHP 提供了函数 [token_get_all](https://www.php.net/manual/en/function.token-get-all.php)，Split given source into PHP tokens (将源码切分为 PHP 的 tokens)。参数是 PHP 源码文本，返回一个 token 数组，我们遍历这个数组，如果发现元素为字符串，追加到初始化的变量 $result 后面，如果这个 token 为 T_COMMENT 或者 T_DOC_COMMENT，则跳过，否则将 token 对应的文本追加到 $result 后面，最后将 $result 覆写到对应的文件中。
+PHP 提供了函数 [token_get_all](https://www.php.net/manual/en/function.token-get-all.php)，<b>Split given source into PHP tokens (将源码切分为 PHP 的 tokens)</b>。参数是 PHP 源码文本，返回一个 token 数组，我们遍历这个数组，如果发现元素为字符串，追加到初始化的变量 $result 后面，如果这个 token 为 T_COMMENT 或者 T_DOC_COMMENT，则跳过，否则将 token 对应的文本追加到 $result 后面，最后将 $result 覆写到对应的文件中。
 
 ```php
-<?php
-
 if ($argc != 2) {
     usage();
 }
@@ -139,4 +137,4 @@ foreach ($objects as $k => $object) {
 
 ## 总结
 
-正则表达式虽然强大，并不是万能的。上面这种场景下，正则表达式显得过于暴力。清除注释，涉及到了 PHP 的语法，我们应该从编程语言的词法分析开始，删掉注释相关的 token，然后重新生成代码。
+<b>正则表达式虽然强大，并不是万能的</b>。上面这种场景下，正则表达式显得过于暴力。清除注释，涉及到了 PHP 的语法，我们应该从编程语言的词法分析开始，删掉注释相关的 token，然后重新生成代码。
