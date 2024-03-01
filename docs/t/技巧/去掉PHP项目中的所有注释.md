@@ -93,7 +93,7 @@ func removeComment(content string) string {
 PHP 提供了函数 [token_get_all](https://www.php.net/manual/en/function.token-get-all.php)，<b>Split given source into PHP tokens (将源码切分为 PHP 的 tokens)</b>。参数是 PHP 源码文本，返回一个 token 数组，我们遍历这个数组，如果发现元素为字符串，追加到初始化的变量 $result 后面，如果这个 token 为 T_COMMENT 或者 T_DOC_COMMENT，则跳过，否则将 token 对应的文本追加到 $result 后面，最后将 $result 覆写到对应的文件中。
 
 ```php
-
+<?php
 
 if ($argc != 2) {
     usage();
