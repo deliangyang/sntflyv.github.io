@@ -1,11 +1,11 @@
 
-上一篇文章用Python实现了一个JSON decode的解析器，这一篇文章我们来实现一个JSON encode的编码器。
+上一篇文章用 Python 实现了一个 JSON decode 的解析器，这一篇文章我们来实现一个 JSON encode 的编码器。
 
-## JSON编码器
+## JSON 编码器
 
 ### 编码器
 
-简单的数据结构如：None，bool，int，float，str 我们可以直接编码为JSON字符串。对于list和dict，我们可以使用递归的方式进行编码。
+简单的数据结构如：None，bool，int，float，str 我们可以直接编码为 JSON 字符串。对于 list 和 dict，我们可以使用递归的方式进行编码。
 
 ```py
 def json_encode(obj):
@@ -45,5 +45,5 @@ if __name__ == '__main__':
 
 ### 总结
 
-1. 这一篇文章我们实现了一个JSON encode的编码器，将Python对象转换为JSON字符串。这个编码器支持了None, bool, int, float, str, list, dict等类型的编码。
+1. 这一篇文章我们实现了一个 JSON encode 的编码器，将 Python 对象转换为 JSON 字符串。这个编码器支持了 None, bool, int, float, str, list, dict 等类型的编码。
 2. 对于数组和对象，我们使用递归的方式进行编码。

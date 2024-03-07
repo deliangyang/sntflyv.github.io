@@ -1,12 +1,12 @@
 
-字典在各类高级语言中都是一种非常重要的数据结构，它的存在便利了数据查找的过程，使得查找的时间复杂度降低到了O(1)。在Python中，字典的实现是基于哈希表的，本文将从Python内核的角度来分析字典的实现。
+字典在各类高级语言中都是一种非常重要的数据结构，它的存在便利了数据查找的过程，使得查找的时间复杂度降低到了 O(1)。在 Python 中，字典的实现是基于哈希表的，本文将从 Python 内核的角度来分析字典的实现。
 
 ## 字典的数据结构
 
 ```c
 struct _dictkeysobject {
     Py_ssize_t dk_refcnt; // 引用计数
-    Py_ssize_t dk_size; // 哈希表的大小，必须是2的幂
+    Py_ssize_t dk_size; // 哈希表的大小，必须是 2 的幂
     dict_lookup_func dk_lookup; // 查找函数
     Py_ssize_t dk_usable; // 可用的条目数
     Py_ssize_t dk_nentries; // 已使用的条目数
@@ -54,8 +54,8 @@ static PyDictKeysObject empty_keys_struct = {
 };
 ```
 
-### 根据key查找字典
-调用`dk_lookup`函数查找字典中的键值对，赋值value，返回索引。
+### 根据 key 查找字典
+调用`dk_lookup`函数查找字典中的键值对，赋值 value，返回索引。
 ```c
 PyObject *
 PyDict_GetItem(PyObject *op, PyObject *key)
@@ -76,9 +76,9 @@ PyDict_GetItem(PyObject *op, PyObject *key)
 }
 ```
 
-### 插入key-value
+### 插入 key-value
 
-生成hash code，判断`mp->ma_keys`是否为空，如果为空，调用`insert_to_emptydict`函数插入键值对，否则调用`insertdict`函数插入键值对。
+生成 hash code，判断`mp->ma_keys`是否为空，如果为空，调用`insert_to_emptydict`函数插入键值对，否则调用`insertdict`函数插入键值对。
 
 ```c
 int
@@ -95,7 +95,7 @@ PyDict_SetItem(PyObject *op, PyObject *key, PyObject *value)
         if (hash == -1)
             return -1;
     }
-      // 如果字典为空，调用insert_to_emptydict函数插入键值对
+      // 如果字典为空，调用 insert_to_emptydict 函数插入键值对
     if (mp->ma_keys == Py_EMPTY_KEYS) {
         return insert_to_emptydict(mp, key, hash, value);
     }
@@ -104,9 +104,9 @@ PyDict_SetItem(PyObject *op, PyObject *key, PyObject *value)
 }
 ```
 
-### 删除key-value
+### 删除 key-value
 
-删除一个key-value，首先需要查找到该key-value的索引，然后判断是否需要合并，合并之后，重新查找索引，最后调用`delitem_common`函数删除key-value。
+删除一个 key-value，首先需要查找到该 key-value 的索引，然后判断是否需要合并，合并之后，重新查找索引，最后调用`delitem_common`函数删除 key-value。
 
 ```c
 int
@@ -117,7 +117,7 @@ PyDict_DelItem(PyObject *op, PyObject *key)
     return _PyDict_DelItem_KnownHash(op, key, hash);
 }
 
-// 判断是否需要合并，其实就是判断ma_values不为空
+// 判断是否需要合并，其实就是判断 ma_values 不为空
 #define _PyDict_HasSplitTable(d) ((d)->ma_values != NULL)
 
 int
@@ -153,7 +153,7 @@ _PyDict_DelItem_KnownHash(PyObject *op, PyObject *key, Py_hash_t hash)
 
 字典看起来比较复杂，其实就是一个数组，数组的每个元素是一个键值对，当数组的元素个数超过数组的大小时，就需要扩容。
 
-oldkeys是旧的键值对数组，newkeys是新的键值对数组，oldvalues是旧的值数组，newvalues是新的值数组，oldentries是旧的键值对，newentries是新的键值对。
+oldkeys 是旧的键值对数组，newkeys 是新的键值对数组，oldvalues 是旧的值数组，newvalues 是新的值数组，oldentries 是旧的键值对，newentries 是新的键值对。
 
 
 ```c
@@ -207,10 +207,10 @@ dictresize(PyDictObject *mp, Py_ssize_t newsize)
 
 ### 字典的遍历
 
-Python字典源码的遍历方法有两种，一种是`PyDict_Next`，一种是`PyDict_NextKey`。需要找到entry_ptr，然后将pkey，pvalue指向entry_ptr的me_key和me_value。
+Python 字典源码的遍历方法有两种，一种是`PyDict_Next`，一种是`PyDict_NextKey`。需要找到 entry_ptr，然后将 pkey，pvalue 指向 entry_ptr 的 me_key 和 me_value。
    
    
-我之前在这篇文章[Python扩展开发，C/C++实现字典遍历以及构造](https://mp.weixin.qq.com/s/BKZh-q14P71-wE17IFFSTA)，也介绍了一种方法。
+我之前在这篇文章[Python 扩展开发，C/C++ 实现字典遍历以及构造](https://mp.weixin.qq.com/s/BKZh-q14P71-wE17IFFSTA)，也介绍了一种方法。
 
 ```c
 int
@@ -261,7 +261,7 @@ _PyDict_Next(PyObject *op, Py_ssize_t *ppos, PyObject **pkey,
 
 ### 字典的清空
 
-字典为空时，直接返回，如果oldvalues不为空，就遍历oldvalues，将每个值都置为NULL，然后释放oldvalues，最后释放oldkeys。如果oldvalues为空，就直接释放oldkeys。
+字典为空时，直接返回，如果 oldvalues 不为空，就遍历 oldvalues，将每个值都置为 NULL，然后释放 oldvalues，最后释放 oldkeys。如果 oldvalues 为空，就直接释放 oldkeys。
 
 ```c
 void
@@ -288,17 +288,17 @@ PyDict_Clear(PyObject *op)
 }
 ```
 
-### hash碰撞、冲突
+### hash 碰撞、冲突
 
 常见的解决冲突的方法有：开放寻址法、再哈希法、链地址法、公共溢出区法、建立一个公共溢出区。
 
-Python中采用的是开放寻址法，即当发生冲突时，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到，并将记录存入。
+Python 中采用的是开放寻址法，即当发生冲突时，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到，并将记录存入。
 
 ## 总结
 
-这里只是简单介绍了Python字典的实现，还有很多细节没有介绍。字典这个数据结构比较重要的点是：散列函数、散列冲突、扩容、缩容、遍历、清空等。字典的存在，使得Python的查找速度大大提高，但是也会带来一些额外的开销，比如内存占用、插入删除的开销等。
+这里只是简单介绍了 Python 字典的实现，还有很多细节没有介绍。字典这个数据结构比较重要的点是：散列函数、散列冲突、扩容、缩容、遍历、清空等。字典的存在，使得 Python 的查找速度大大提高，但是也会带来一些额外的开销，比如内存占用、插入删除的开销等。
 
-下一篇文章我会再深入的介绍一下Python的字典，敬请期待。
+下一篇文章我会再深入的介绍一下 Python 的字典，敬请期待。
 
 
 <i>本人非计算机专业自学成为一名程序员，已工作八年，有丰富的摸索、自学经验。热衷于编程语言底层实现原理。通过一些空闲时间阅读源码，记录自己的所学及心得。你的关注和鼓励是对我持续输出分享的动力，感谢，共同进步。喜欢就关注一下😍。</i>

@@ -1,9 +1,9 @@
 
-上篇[Python内核源码解析：内核基础数据结构字典解析（上）](https://mp.weixin.qq.com/s/wm2mdeXYiW_xw3SNDkYHkw)，浅浅的介绍了一下PyDictObject。接下来来我们将深入的了解 dict 的实现。
+上篇[Python 内核源码解析：内核基础数据结构字典解析（上）](https://mp.weixin.qq.com/s/wm2mdeXYiW_xw3SNDkYHkw)，浅浅的介绍了一下 PyDictObject。接下来来我们将深入的了解 dict 的实现。
 
-字典的存储能分两种，通过PyDictObject的`ma_values`是否为空来区分。`ma_values`为空时，字典的数据存储在`ma_keys`中，`ma_values`不为空时，字典的数据存储在`ma_values`中。
+字典的存储能分两种，通过 PyDictObject 的`ma_values`是否为空来区分。`ma_values`为空时，字典的数据存储在`ma_keys`中，`ma_values`不为空时，字典的数据存储在`ma_values`中。
 
-ma_values 为空，字典是"combined"，keys和values都存储在ma_keys中。ma_values 不为空，表是字典是"split"，keys存储在ma_keys中，values存储在ma_values中。
+ma_values 为空，字典是"combined"，keys 和 values 都存储在 ma_keys 中。ma_values 不为空，表是字典是"split"，keys 存储在 ma_keys 中，values 存储在 ma_values 中。
 
 ## 那 ma_values 什么时候为空，什么是否不为空呢？
 
@@ -27,7 +27,7 @@ PyObject **ma_values;
 ```
 
 
-## 字典在Python中的使用方法
+## 字典在 Python 中的使用方法
 
 ```py
 import dis
@@ -98,17 +98,17 @@ dis.dis(code)
              70 RETURN_VALUE
 ```
 
-### dir(dict)列出dict的所有属性及方法
+### dir(dict) 列出 dict 的所有属性及方法
 
-Python Lib中定义的导出方法可以在`Objects/dictobject.c`中找到，如下：
+Python Lib 中定义的导出方法可以在`Objects/dictobject.c`中找到，如下：
 
 ```text
 ['__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__ior__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__ror__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
 ```
 
-PyMethodDef 有四个字段，分别是ml_name、ml_meth、ml_flags、ml_doc。ml_name是方法名，ml_meth是方法的实现函数，ml_flags是方法的标志，包含函数的参数个数，ml_doc是方法的文档。METH_NOARGS表示没有参数，METH_O表示一个参数，METH_VARARGS表示可变参数，METH_KEYWORDS表示关键字参数。
+PyMethodDef 有四个字段，分别是 ml_name、ml_meth、ml_flags、ml_doc。ml_name 是方法名，ml_meth 是方法的实现函数，ml_flags 是方法的标志，包含函数的参数个数，ml_doc 是方法的文档。METH_NOARGS 表示没有参数，METH_O 表示一个参数，METH_VARARGS 表示可变参数，METH_KEYWORDS 表示关键字参数。
 
-通过定义PyMethodDef结构体，将方法名、实现函数、标志、文档等信息组合在一起，然后将PyMethodDef结构体放入PyTypeObject结构体中，这样就可以通过dir(dict)列出dict的所有属性及方法。dict可以理解为通过C语言扩展了一个Python的内置库。
+通过定义 PyMethodDef 结构体，将方法名、实现函数、标志、文档等信息组合在一起，然后将 PyMethodDef 结构体放入 PyTypeObject 结构体中，这样就可以通过 dir(dict) 列出 dict 的所有属性及方法。dict 可以理解为通过 C 语言扩展了一个 Python 的内置库。
 
 ```c
 
@@ -149,9 +149,9 @@ static PyMethodDef mapp_methods[] = {
 };
 ```
 
-### dict相关操作码的实现
+### dict 相关操作码的实现
 
-TOP()，SECOND()，THIRD()，POP()等宏定义在`Include/ceval.h`中。这几个宏的作用是对栈中元素进行操作，`POP()`是弹出栈顶元素，`TOP()`是获取栈顶元素，`SECOND()`是获取栈顶第二个元素，`THIRD()`是获取栈顶第三个元素。
+TOP()，SECOND()，THIRD()，POP() 等宏定义在`Include/ceval.h`中。这几个宏的作用是对栈中元素进行操作，`POP()`是弹出栈顶元素，`TOP()`是获取栈顶元素，`SECOND()`是获取栈顶第二个元素，`THIRD()`是获取栈顶第三个元素。
 
 ```c
 
@@ -245,6 +245,6 @@ case TARGET(DELETE_SUBSCR): {       // 删除
 
 ## 总结
 
-1. 字典相关的操作码的作用是执行简单的操作，如创建字典、存储、删除等。`BUILD_MAP`操作码是创建字典，`STORE_SUBSCR`操作码是存储，`DELETE_SUBSCR`操作码是删除。Python将复杂的代码分解成简单的操作码，然后由解释器执行。可以理解为这是一个动态规划的过程，将复杂的问题分解成很多简单的问题，然后逐步解决。
-2. dict 是Python内置库C扩展的实现，通过隐藏一些底层的实现细节，提供了一些高级的操作接口，如`keys`、`items`、`values`等。
-3. 字典不是Python的独有数据结构，它能提供高效的键值查找，是Python中非常重要的数据结构之一。
+1. 字典相关的操作码的作用是执行简单的操作，如创建字典、存储、删除等。`BUILD_MAP`操作码是创建字典，`STORE_SUBSCR`操作码是存储，`DELETE_SUBSCR`操作码是删除。Python 将复杂的代码分解成简单的操作码，然后由解释器执行。可以理解为这是一个动态规划的过程，将复杂的问题分解成很多简单的问题，然后逐步解决。
+2. dict 是 Python 内置库 C 扩展的实现，通过隐藏一些底层的实现细节，提供了一些高级的操作接口，如`keys`、`items`、`values`等。
+3. 字典不是 Python 的独有数据结构，它能提供高效的键值查找，是 Python 中非常重要的数据结构之一。

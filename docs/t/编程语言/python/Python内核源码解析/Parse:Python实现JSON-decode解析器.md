@@ -1,14 +1,14 @@
 
-JSON是一种编程语言无关的数据格式，它是一种轻量级的数据交换格式。JSON的数据格式在语法上与Python的字典类似，但是JSON的数据格式是纯文本的，它可以被任何编程语言读取和解析。
+JSON 是一种编程语言无关的数据格式，它是一种轻量级的数据交换格式。JSON 的数据格式在语法上与 Python 的字典类似，但是 JSON 的数据格式是纯文本的，它可以被任何编程语言读取和解析。
 
-JSON的数据格式是一个键值对的集合，它由键值对组成，键值对之间使用逗号分隔，键值对的键和值之间使用冒号分隔。JSON的数据格式可以包含数组和对象，数组是一个有序的值的集合，对象是一个无序的键值对的集合。
+JSON 的数据格式是一个键值对的集合，它由键值对组成，键值对之间使用逗号分隔，键值对的键和值之间使用冒号分隔。JSON 的数据格式可以包含数组和对象，数组是一个有序的值的集合，对象是一个无序的键值对的集合。
 
 
 其数据结构可以在官方文档中查看：[https://www.json.org/json-zh.html](https://www.json.org/json-zh.html)
 
-接下来我们用Python实现一个JSON解析器，实现JSON的解析。
+接下来我们用 Python 实现一个 JSON 解析器，实现 JSON 的解析。
 
-## JSON解析器
+## JSON 解析器
 
 ### token 类型
 ```py
@@ -27,7 +27,7 @@ token_lbracket = 11 # [
 token_rbracket = 12 # ]
 ```
 
-### 映射token类型到字符串
+### 映射 token 类型到字符串
 ```py
 def token_name(tok):
     return {
@@ -47,7 +47,7 @@ def token_name(tok):
     }[tok]
 ```
 
-### tokenify函数，将单词后者数字、符号转换为token流
+### tokenify 函数，将单词后者数字、符号转换为 token 流
 ```py
 def tokenify(s):
     l = len(s)
@@ -127,7 +127,7 @@ def parse_string(s, l, cursor):
     return s[start:cursor], cursor + 1
 ```
 
-### 解析true
+### 解析 true
 ```py
 def parse_true(s, l, cursor):
     if len(s) < cursor + 4:
@@ -138,7 +138,7 @@ def parse_true(s, l, cursor):
     return True, cursor
 ```
 
-### 解析false
+### 解析 false
 ```py
 def parse_false(s, l, cursor):
     if len(s) < cursor + 5:
@@ -149,7 +149,7 @@ def parse_false(s, l, cursor):
     return False, cursor
 ```
 
-### 解析null
+### 解析 null
 ```py
 def parse_null(s, l, cursor):
     if len(s) < cursor + 4:
@@ -159,7 +159,7 @@ def parse_null(s, l, cursor):
     cursor += 4
     return None, cursor
 ```
-### 解析JSON，将token流转换为JSON对象
+### 解析 JSON，将 token 流转换为 JSON 对象
 ```py
 def parse(s):
     tokens = list(tokenify(s))
@@ -241,6 +241,6 @@ if __name__ == '__main__':
 
 ## 总结
 
-1. 用Python实现JSON解析器，其性能比Python内置的json库慢了10倍左右。这次动手实现JSON解析器的目的是为了学习JSON的解析原理，实际开发中不建议自己实现JSON解析器，而是使用Python内置的json库。
-2. JSON解析器的实现原理是有限状态机，它将JSON字符串转换为token流，然后根据token流解析出JSON对象。
-3. 这次研究的JSON解析器只是一个简单的实现，实际的JSON解析器还需要处理更多的细节，比如处理转义字符、处理Unicode字符等。
+1. 用 Python 实现 JSON 解析器，其性能比 Python 内置的 json 库慢了 10 倍左右。这次动手实现 JSON 解析器的目的是为了学习 JSON 的解析原理，实际开发中不建议自己实现 JSON 解析器，而是使用 Python 内置的 json 库。
+2. JSON 解析器的实现原理是有限状态机，它将 JSON 字符串转换为 token 流，然后根据 token 流解析出 JSON 对象。
+3. 这次研究的 JSON 解析器只是一个简单的实现，实际的 JSON 解析器还需要处理更多的细节，比如处理转义字符、处理 Unicode 字符等。

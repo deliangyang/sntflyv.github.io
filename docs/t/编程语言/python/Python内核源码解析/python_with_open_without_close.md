@@ -1,18 +1,18 @@
 
 ## 背景
-感觉上一篇文章写的不够详细，就开了个头，让人有点云里雾里，所以这篇文章就来详细的分析一下`with open() as f:`这个语句的执行过程，为什么with打开文件不再需要调用close关闭文件。
+感觉上一篇文章写的不够详细，就开了个头，让人有点云里雾里，所以这篇文章就来详细的分析一下`with open() as f:`这个语句的执行过程，为什么 with 打开文件不再需要调用 close 关闭文件。
 
-[python中使用with操作文件，为什么不需要手动关闭？](https://mp.weixin.qq.com/s/cyNJ0-fvGqb7wTJ9jOWbyg)
+[python 中使用 with 操作文件，为什么不需要手动关闭？](https://mp.weixin.qq.com/s/cyNJ0-fvGqb7wTJ9jOWbyg)
 
-如下是一个简单的例子，打开一个文件text.txt，pass（空语句，为了保持程序的完整性，不做任何事情，仅占位），然后程序结束。
+如下是一个简单的例子，打开一个文件 text.txt，pass（空语句，为了保持程序的完整性，不做任何事情，仅占位），然后程序结束。
 
 ```python
 with open('test.txt', 'r') as f:
     pass
 ```
 
-## 使用dis模块查看字节码
-使用dis模块，打印输出上面的代码的字节码，字节码如下。类似汇编指令。
+## 使用 dis 模块查看字节码
+使用 dis 模块，打印输出上面的代码的字节码，字节码如下。类似汇编指令。
 
 ```bash
 python3.10 -m dis a.py
@@ -45,16 +45,16 @@ python3.10 -m dis a.py
              46 RETURN_VALUE
 ```
 
-第一个列2，3表示行数，第二列表示字节码的偏移量，第三列表示字节码的操作码，第四列表示操作码的参数，第五列表示操作码的参数的含义。
-Python3.7和Python3.10的字节码有些不同。
+第一个列 2，3 表示行数，第二列表示字节码的偏移量，第三列表示字节码的操作码，第四列表示操作码的参数，第五列表示操作码的参数的含义。
+Python3.7 和 Python3.10 的字节码有些不同。
 
-Python3.7的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLEANUP_FINISH`。
+Python3.7 的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLEANUP_FINISH`。
 
-而Python3.10的相关字节码是：`SETUP_WITH`，`WITH_EXCEPT_START`，`POP_JUMP_IF_TRUE`，`RERAISE`，`POP_EXCEPT`。显然Python3.10的字节码更加复杂，也更加灵活。
+而 Python3.10 的相关字节码是：`SETUP_WITH`，`WITH_EXCEPT_START`，`POP_JUMP_IF_TRUE`，`RERAISE`，`POP_EXCEPT`。显然 Python3.10 的字节码更加复杂，也更加灵活。
 
 ## 分析字节码相关的内核源码
 
-打开Python内核源码，搜索`SETUP_WITH`，找到`Python/ceval.c`文件，如下。
+打开 Python 内核源码，搜索`SETUP_WITH`，找到`Python/ceval.c`文件，如下。
 
 ```c
     case TARGET(SETUP_WITH): {
@@ -80,7 +80,7 @@ Python3.7的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLE
         /* Setup the finally block before pushing the result
             of __enter__ on the stack. */
         PyFrame_BlockSetup(f, SETUP_FINALLY, INSTR_OFFSET() + oparg,
-                            STACK_LEVEL()); // 设置finally块
+                            STACK_LEVEL()); // 设置 finally 块
 
         PUSH(res);
         DISPATCH();
@@ -101,7 +101,7 @@ Python3.7的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLE
             return value.
         */
         PyObject *exit_func;
-        // exit_func是__exit__方法，参数是：exc是异常对象，val是异常值，tb是异常的traceback
+        // exit_func 是__exit__方法，参数是：exc 是异常对象，val 是异常值，tb 是异常的 traceback
         PyObject *exc, *val, *tb, *res;     
 
         exc = TOP();    // 获取栈顶元素
@@ -109,12 +109,12 @@ Python3.7的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLE
         tb = THIRD();  // 获取第三个元素
         assert(!Py_IsNone(exc));
         assert(!PyLong_Check(exc));
-        exit_func = PEEK(7);    // 获取第7个元素
+        exit_func = PEEK(7);    // 获取第 7 个元素
         PyObject *stack[4] = {NULL, exc, val, tb};
         res = PyObject_Vectorcall(exit_func, stack + 1,
                 3 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);  // 调用__exit__方法
         if (res == NULL)
-            goto error; // 调用__exit__方法失败，跳转到error
+            goto error; // 调用__exit__方法失败，跳转到 error
 
         PUSH(res);
         DISPATCH();
@@ -133,14 +133,14 @@ Python3.7的相关字节码是：`SETUP_WITH`，`WITH_CLEANUP_START`，`WITH_CLE
         }
         if (Py_IsTrue(cond)) {      // 如果条件为真，则跳转到指定位置
             Py_DECREF(cond);
-            JUMPTO(oparg);          // 跳转到指定位置, oparg是指定位置的偏移量
+            JUMPTO(oparg);          // 跳转到指定位置，oparg 是指定位置的偏移量
             CHECK_EVAL_BREAKER();
             DISPATCH();
         }
-        err = PyObject_IsTrue(cond);    // 如果条件不是真也不是假，则调用PyObject_IsTrue方法
+        err = PyObject_IsTrue(cond);    // 如果条件不是真也不是假，则调用 PyObject_IsTrue 方法
         Py_DECREF(cond);
         if (err > 0) {
-            JUMPTO(oparg);          // 跳转到指定位置, oparg是指定位置的偏移量
+            JUMPTO(oparg);          // 跳转到指定位置，oparg 是指定位置的偏移量
             CHECK_EVAL_BREAKER();   // 检查是否需要中断
         }
         else if (err == 0)
@@ -174,7 +174,7 @@ PyAPI_FUNC(int) Py_IsFalse(PyObject *x);
 ```
 
 
-`RERAISE`指令代码如下，看起来没有那么复杂，其实就是将异常对象，异常值，异常的traceback重新设置到系统中，然后跳转到`exception_unwind`，最后执行`POP_EXCEPT`。
+`RERAISE`指令代码如下，看起来没有那么复杂，其实就是将异常对象，异常值，异常的 traceback 重新设置到系统中，然后跳转到`exception_unwind`，最后执行`POP_EXCEPT`。
 ```c
   case TARGET(RERAISE): {
         assert(f->f_iblock > 0);
@@ -194,7 +194,7 @@ PyAPI_FUNC(int) Py_IsFalse(PyObject *x);
 
 1. `with`语句的实现原理是：先调用`__enter__`方法，然后执行`with`语句块，最后调用`__exit__`方法。
 2. `with`语句的实现原理是通过`SETUP_WITH`指令和`WITH_EXCEPT_START`指令来实现的。
-3. open函数已经帮我实现了`__enter__`和`__exit__`方法，所以我们可以直接使用`with`语句来打开文件，作用域结束后，文件会自动关闭。
+3. open 函数已经帮我实现了`__enter__`和`__exit__`方法，所以我们可以直接使用`with`语句来打开文件，作用域结束后，文件会自动关闭。
 
 ---
 

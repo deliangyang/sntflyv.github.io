@@ -37,7 +37,7 @@ _PyAST_Optimize(mod_ty mod, PyArena *arena, _PyASTOptimizeState *state)
 }
 ```
 
-`astfold_mod` 函数是 AST 优化的核心函数，对body，stmt，expr等节点进行优化。其实现如下：
+`astfold_mod` 函数是 AST 优化的核心函数，对 body，stmt，expr 等节点进行优化。其实现如下：
 
 ```c
 static int
@@ -68,7 +68,7 @@ astfold_mod(mod_ty node_, PyArena *ctx_, _PyASTOptimizeState *state)
 
 语法树的优化是通过将语法树的节点进行折叠（折叠无效，累赘，重复，可编译时计算的节点），从而减少语法树的节点，最终达到减少执行指令的目的。
 
-### astfold_body body代码块折叠优化
+### astfold_body body 代码块折叠优化
 
 ```c
 static int
@@ -98,7 +98,7 @@ astfold_body(asdl_stmt_seq *stmts, PyArena *ctx_, _PyASTOptimizeState *state)
 
 `astfold_body` 函数的作用是对语法树的 body 进行优化，如果 body 中包含 docstring，那么调用 _PyAST_GetDocString 函数获取 docstring；然后调用 astfold_stmt 函数对 body 进行优化；最后，如果 body 中包含 docstring，那么调用 _PyAST_JoinedStr 函数对 docstring 进行优化。
 
-body里面的每一个节点都会调用 astfold_stmt 函数进行优化。这是一个递归的过程，直到所有的节点都被优化。
+body 里面的每一个节点都会调用 astfold_stmt 函数进行优化。这是一个递归的过程，直到所有的节点都被优化。
 
 ### astfold_stmt 语句折叠优化
 
@@ -127,7 +127,7 @@ astfold_stmt(stmt_ty node_, PyArena *ctx_, _PyASTOptimizeState *state)
 
 `astfold_stmt` 函数的作用是对语法树的 stmt 进行优化，如果 stmt 的类型是 FunctionDef_kind，那么调用 astfold_arguments 函数对 args 进行优化，调用 astfold_body 函数对 body 进行优化，调用 astfold_expr 函数对 decorator_list 进行优化，如果没有 CO_FUTURE_ANNOTATIONS，那么调用 astfold_expr 函数对 returns 进行优化。
 
-stmt 的优化是通过节点类型的数据结构进行逐步优化，这也是一个递归的过程，直到所有的节点都被优化。例如 if 包含 test, body, orelse 三个节点，test是一个表达式，而body和orelse是一个语句序列（stmt），所以需要分别调用 astfold_expr 和 astfold_stmt 函数进行优化。
+stmt 的优化是通过节点类型的数据结构进行逐步优化，这也是一个递归的过程，直到所有的节点都被优化。例如 if 包含 test, body, orelse 三个节点，test 是一个表达式，而 body 和 orelse 是一个语句序列（stmt），所以需要分别调用 astfold_expr 和 astfold_stmt 函数进行优化。
 
 ```c
 case If_kind:
@@ -203,7 +203,7 @@ a = 1 + 2
 dis.dis(code)
 ```
 
-可以看到 1 + 2 被优化成了 3。调用 a 变成了 LOAD_CONST，将3加载到栈中，然后调用 STORE_NAME 将 3 存储到 a 中。输出字节码如下：
+可以看到 1 + 2 被优化成了 3。调用 a 变成了 LOAD_CONST，将 3 加载到栈中，然后调用 STORE_NAME 将 3 存储到 a 中。输出字节码如下：
 ```text
   2           0 LOAD_CONST               0 (3)
               2 STORE_NAME               0 (a)
