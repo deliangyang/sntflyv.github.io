@@ -1,6 +1,8 @@
 
 ## Rust lifetime 生命周期
 
+- 变量的生命周期局限在作用域内，如果要在作用域之外使用改变了，那么我们就需要标注？
+
 ### Borrow Checker 借用检查器
 
 #### 代码块
@@ -58,5 +60,6 @@ fn longest<'a>(x: &str, y: &str) -> &'a str {
 3. 多个输入生命周期参数，`&self`或`&mult self`，self 的生命周期被赋给所有输出生命周期参数。
 
 
-
+- the dangling reference
+    - 未标注的引用
 

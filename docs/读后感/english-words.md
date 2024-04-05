@@ -1,0 +1,44 @@
+
+- concept
+  - an idea of how something is, or how something should be done
+    - concept of
+      - the concept of total patinet care
+      - the concept of infinite space
+    - concept that
+      - the concept that we are citizens of one world
+      - a new concept in business travel
+      - our basic concepts of decent humna behavior
+      - It's very simple, once you grasp the concept
+
+- In fact
+- pronunciation
+  - the way in chich a language or a particular word is pronounced
+- pronounce 明言
+  - to make the sound of a letter, word etc, especially in the correct way
+    - correct
+    - incorrect
+  - how do you pronounce your name?
+- snack
+  - a small amount of food that is eaten between man meals or intead of meal
+- drill
+  - the drill
+  - A tool or machine uesd for making holes in something
+    - an electric drill
+  - a method of teaching students, sports players etc something by making them repeat the same lesson, exercise etc many times.
+- if you ask me
+  - in my opinion
+- you'd be much better of
+- request your transfer
+- we can make that happen (让某事情发生)
+  - i can do that
+- so far
+  -  如此
+- to do so
+  - 为此
+- In the same way that the function body can operate on an abstract list instead of specific values, generics allow code to operate on abstract types.
+- eliminate
+  - How would we eliminate that duplication?
+- At the beginning of this book I promised you that we wouldn't take any shortcusts and build a fullu functional interpreter with our own hands, from scratch and without any third part tools.
+- Consider what happens when we run this snippet of Monkey code in our interpreter
+- Obviously
+- The environment that was constructed for the evaluation of counter's body gets destroyed and with it the foobar binding.
