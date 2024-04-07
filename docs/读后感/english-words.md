@@ -96,6 +96,7 @@
       - 混乱
     - slightest
       - 至少
+  - I was trying to sound calm even though I was very upset.
 
 
 - 如何翻译
