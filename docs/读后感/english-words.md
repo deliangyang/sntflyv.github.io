@@ -79,6 +79,24 @@
   - 在这些例子中，返回 Result 表明失败是一个有可能被预知的，在调用代码时必须决定如何处理。
   - 在这些情况下，返回一个结果表示失败有一种预期的可能性，调用代码必须决定如何处理。
 
+- calm down
+  - 冷静下来
+  - relaxed and quiet, not angry, nervous, or upset
+  - if a place, period of time, or situation is calm, there is less activity, trouble etc than there sometimes is, or than there has been recently
+  - a sea, lake etc that is calm is somooth or has only gentle waves.
+  - calmly  adverb
+  - calmness  noun
+  - The sea was dead calm
+  - His eyes, which, moments earlier, had been filled with fear and horror, were now clear, almost calm.
+  - After yesterday's fighting, the region is now calm again.
+  - My siter was always calm and careful, whereas I would get excited and upset by the slightest thing
+    - whereas
+      - 鉴于
+    - upset
+      - 混乱
+    - slightest
+      - 至少
+
 
 - 如何翻译
   - 翻译句子的顺序不一定是按短句或者从句的走向，首先我们应该学会的是如何断句，消除补充说明，翻译每个短句或者从句的意思，然后再拼接在一起，调整句子的顺序，最终达到语句通顺，表达清晰。
