@@ -1,13 +1,13 @@
 
-Go HTTP 服务优雅退出有两个特点
+Go HTTP 服务“优雅退出”有两个特点
 
-1. 程序中断退出时，需要等待处理中的请求处理完毕后再退出，或者等待超时时间结束后退出
-2. 程序中断退出时，客户端新发起的请求，会被服务器拦截，无法进入业务逻辑处理
+1. 程序中断退出时，需要给程序预留退出时间，等待处理中的请求处理完毕后再退出
+2. 程序中断退出时，客户端新发起的请求，会被服务器拦截，无法执行业务逻辑
 
 ## 实验前准备
 
 1. 编写一个接口服务。访问接口 `/hello`，Sleep 10s，返回响应结果
-2. 将 server.ListenAndServe 放到一个 goroutine 协程中，如果返回错误不是 `http.ErrServerClosed`，panic 退出
+2. 将 server.ListenAndServe 放到一个 goroutine 协程中，如果返回错误不是 `http.ErrServerClosed`（这里需要特别注意下），panic 退出
 3. 主线程监听系统中断指令，程序收到中断指令 `syscall.SIGINT, syscall.SIGTERM` 后，初始化一个 10s 超时取消的 `context.Context`
 4. 将超时取消的 `context.Context` 作为参数传入 `server.Shutdown(ctx)`，程序等待 10s 关闭
 
@@ -66,9 +66,10 @@ func main() {
 
 ![Graceful Exit 实验截图](./graceful-exit.png)
 
+## 生产者、消费者的优雅退出
 
-其实，优雅退出不限于 HTTP 服务。优雅退出的本质就是给进程留出清理的时间，程序退出时，可能内存队列中有些数据还没有处理完，如果这些数据没有处理完，有可能造成数据丢失等问题，或者多个步骤的数据处理不在事务内，导致前面的数据处理逻辑已执行，后面的部分数据未处理，流程中断，产生脏数据，出现这种问题就比较棘手了。可见“优雅退出”何其重要。
-
+1. 创建一个 channel，往 channel 中写入 1000 个数据
+2. 监听系统中断信号，收到中断信号后，关闭 channel，等待 channel 中的数据处理完毕后退出
 
 ```go
 package main
@@ -86,8 +87,6 @@ func main() {
 	queue := make(chan int64, 1000)
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, syscall.SIGINT, syscall.SIGTERM)
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-	defer cancel()
 	end := 1000
 	for i := 0; i < end; i++ {
 		queue <- int64(i)
@@ -101,19 +100,20 @@ func main() {
 				return
 			}
 			time.Sleep(time.Microsecond * 100)
-		case <-ctx.Done():
-			for i := range queue {
-				fmt.Println(i)
-			}
 		case <-done:
 			close(queue)
 			for i := range queue {
 				fmt.Println(i)
 			}
-			cancel()
 			return
 		}
 	}
 }
 
 ```
+
+我第一次知道“优雅退出”这个名词来自 Golang 的相关知识，理解之后发现，其实这个名词并非 Golang 专属，任何程序都需要考虑给程序预留退出时间，以保证所有的逻辑处理完毕、数据完整等。
+
+<b>优雅退出的本质就是给进程留出清理的时间。程序退出时，在内存队列中可能有些数据还没有处理完，强制退出，会造成数据丢失的等问题；或者数据操作不被事务“包裹”，前面的数据处理逻辑已执行，流程中断，后面的部分数据未被处理，产生脏数据。</b>
+
+出现上面这些问题，在后期修复数据比较棘手，会出现不知道该修复哪些数据，或者无法修复的问题。可见“优雅退出”何其重要。
