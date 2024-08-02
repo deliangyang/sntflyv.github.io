@@ -9,8 +9,8 @@
 
 ### 非法字符
 
-遍历字符串，将字符转化为token一个一个的token
+遍历字符串，将字符转化为 token 一个一个的 token
 
-token是有起止位置的
+token 是有起止位置的
 
-token 练起来转化为表达式ast 代码块 block
+token 练起来转化为表达式 ast 代码块 block

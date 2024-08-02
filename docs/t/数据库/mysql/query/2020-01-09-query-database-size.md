@@ -1,5 +1,5 @@
 
-### 查看mysql databases每个表的大小及行数
+### 查看 mysql databases 每个表的大小及行数
 
 ```php
 #!/usr/bin/env /usr/bin/php

@@ -1,7 +1,7 @@
 
 
 ## bpftrace
-> bpftrace 是基于ebpf内核vm扩展出来的trace工具。  
+> bpftrace 是基于 ebpf 内核 vm 扩展出来的 trace 工具。  
 
 
 

@@ -1,7 +1,7 @@
 
 ## 背景
 
-1. 远程服务器对外服务的端口关闭如redis 6379，mysql：3306等，但是不想对外暴漏端口，ssh：22可以登录远程服务器，想实现本地访问远程服务。
+1. 远程服务器对外服务的端口关闭如 redis 6379，mysql：3306 等，但是不想对外暴漏端口，ssh：22 可以登录远程服务器，想实现本地访问远程服务。
 2. 公网访问内部服务，端口转发
 
 ## 端口实现
@@ -19,7 +19,7 @@ port_close () {
 }
 ```
 
-### ssh参数解释
+### ssh 参数解释
 
 1. -f 后端运行，如果想在终端一直阻塞，可以不要这个参数
 2. -N 端口转发，不会执行远程命令。Do not execute a remote command.  This is useful for just forwarding ports.
@@ -52,7 +52,7 @@ port_gateway() {
 }
 ```
 
-### sshd_config修改
+### sshd_config 修改
 
 ```bash
 vim /etc/ssh/sshd_config

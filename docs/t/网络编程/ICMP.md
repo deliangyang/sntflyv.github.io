@@ -1,5 +1,5 @@
 ## ICMP 协议
-> ICMP（Internal Control Message Protocol）互联网控制报文协议，TCP/IP协议簇的一个子协议。对网络连接状态进行判断。
+> ICMP（Internal Control Message Protocol）互联网控制报文协议，TCP/IP 协议簇的一个子协议。对网络连接状态进行判断。
 
 ```bash
 # 发送一个数据包，方便Wireshark抓包
@@ -24,7 +24,7 @@ ping -c 1 www.sourcedev.cc
 ```
 - Destination: 82:11:8f:51:9e:64 (82:11:8f:51:9e:64)
 - Source: Apple_f2:a0:49 (a4:5e:60:f2:a0:49)
-    - 本机MAC地址
+    - 本机 MAC 地址
 - Type: IPv4 (0x0800)
 
 ### 响应
@@ -45,8 +45,8 @@ ping -c 1 www.sourcedev.cc
 ```
 
 ## 总结
-- data 发送什么数据，应答什么数据，0x08 ~ 0x37，数据包固定长度98个字节
-- id 随机，序列号重置，从0开始
+- data 发送什么数据，应答什么数据，0x08 ~ 0x37，数据包固定长度 98 个字节
+- id 随机，序列号重置，从 0 开始
 
 ### 参考资料
 

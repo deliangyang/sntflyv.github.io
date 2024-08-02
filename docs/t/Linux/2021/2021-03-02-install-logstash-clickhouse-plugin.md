@@ -1,18 +1,18 @@
-## 为logstash安装clickhouse插件
+## 为 logstash 安装 clickhouse 插件
 
 ### 简单介绍
-logstash的clickhosue插件是用ruby写的，[https://github.com/funcmike/logstash-output-clickhouse](https://github.com/funcmike/logstash-output-clickhouse) 这是一个归档项目，没有再维护了。主要实现的就是将数据通过http `JSONEachRow`的方式提交给clickhouse，只实现了output阶段。
+logstash 的 clickhosue 插件是用 ruby 写的，[https://github.com/funcmike/logstash-output-clickhouse](https://github.com/funcmike/logstash-output-clickhouse) 这是一个归档项目，没有再维护了。主要实现的就是将数据通过 http `JSONEachRow`的方式提交给 clickhouse，只实现了 output 阶段。
 
 
 ### 安装插件，手动编译
 - 确保服务器安装了 `ruby`，`gem`
-- clone项目，`git clone https://github.com/funcmike/logstash-output-clickhouse.git`
+- clone 项目，`git clone https://github.com/funcmike/logstash-output-clickhouse.git`
 - `cd logstash-output-clickhouse`
 - `gem build logstash-output-clickhouse.gemspec`
 - `logstash-plugin install logstash-output-clickhouse-0.1.0.gem`
 - 检查插件是否安装成功：`bin/logstash-plugin list | grep clickhouse`
 
-### 注意如果使用了国内源的，可能会出现超时，SSL的问题
+### 注意如果使用了国内源的，可能会出现超时，SSL 的问题
 > 增加：`:ssl_verify_mode: 0`
 ```
 root@debian:~# cat ~/.gemrc

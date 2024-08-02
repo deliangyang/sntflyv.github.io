@@ -3,9 +3,9 @@
 
 > src/runtime/runtime2.go
 
-### eface（empty interface）
-- empty interface 不包含方法的interface结构
-- data 是nil，只要_type 不是nil这个 `interface{}` 就不是nil
+### eface (empty interface)
+- empty interface 不包含方法的 interface 结构
+- data 是 nil，只要_type 不是 nil 这个 `interface{}` 就不是 nil
 
 ```go
 type eface struct {
@@ -37,7 +37,7 @@ type _type struct {
 }
 ```
 
-### iface （non-empty interface）
+### iface (non-empty interface)
 - 方法的具体实现存放在 `itag.fun` 变量中
 - 如果 interface 包含多个方法
     - iface 里有个 hash table `runtime/iface.go`

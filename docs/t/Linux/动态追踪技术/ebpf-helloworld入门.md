@@ -1,4 +1,4 @@
-## eBPF hello world程序入门
+## eBPF hello world 程序入门
 
 这里使用[https://github.com/cilium/ebpf](https://github.com/cilium/ebpf)来实现`hello world`程序
 
@@ -133,27 +133,27 @@ objdump -tT /usr/local/bin/php
 ## 总结
 - 目前看来[https://github.com/cilium/ebpf](https://github.com/cilium/ebpf)跨平台有点吃力，至少不支持`Mac`。
 - 程序有上下文。
-- `cilim/ebpf`其实是用`go`实现了`c`的加载器（纯go实现）。
-- eBPF字节码只有通过验证之后，才能挂载到内核函数上，保证了系统的稳定。
-- eBPF可以做很多的事情
+- `cilim/ebpf`其实是用`go`实现了`c`的加载器（纯 go 实现）。
+- eBPF 字节码只有通过验证之后，才能挂载到内核函数上，保证了系统的稳定。
+- eBPF 可以做很多的事情
   - 计算函数的调用时长
   - 函数的调用次数
   - 结合火焰图查看系统的性能
   - 无侵入的窥探程序或系统
-  - 嗅探网络，SSL、数据库query、redis的query等等
+  - 嗅探网络，SSL、数据库 query、redis 的 query 等等
 
-## BPF 类型格式 （BTF）
-> 我们知道不同的内核版本，代码上肯定有细微的差别，比如 文件打开的系统调用，在 v.5.5 之前还是 do_sys_openat 而最新版的内核已经变成了 do_sys_openat2 函数，这显然违背了一次编译，永久执行的初衷。线上生产环境的内核数据结构的定义决定了eBPF 程序是否能正常执行。虽然我们线下安装了 linux-headers-$(uname -r) 内核头文件，但是线上环境一般是不会装的。
+## BPF 类型格式（BTF）
+> 我们知道不同的内核版本，代码上肯定有细微的差别，比如 文件打开的系统调用，在 v.5.5 之前还是 do_sys_openat 而最新版的内核已经变成了 do_sys_openat2 函数，这显然违背了一次编译，永久执行的初衷。线上生产环境的内核数据结构的定义决定了 eBPF 程序是否能正常执行。虽然我们线下安装了 linux-headers-$(uname -r) 内核头文件，但是线上环境一般是不会装的。
 
-> 这就引入了 BTF (BPF Type Fromat) ，从 v5.2 开始，只要内核开启了 CONFIG_DEBUG_INFO_BTF ，在编译内核时，内核的数据结构会自动嵌入内核的二进制文件 vmlinux 中，可以通过 bpftool 工具导出头文件。
+> 这就引入了 BTF (BPF Type Fromat) ，从 v5.2 开始，只要内核开启了 CONFIG_DEBUG_INFO_BTF，在编译内核时，内核的数据结构会自动嵌入内核的二进制文件 vmlinux 中，可以通过 bpftool 工具导出头文件。
 
 ```bash
 bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 ```
-> 所以在开发 eBPF 程序时只需要引入一个 vmlinux.h 即可。除此之外， BTF 可以让 eBPF 程序在内核升级之后，不需要编译就可以直接运行。
+> 所以在开发 eBPF 程序时只需要引入一个 vmlinux.h 即可。除此之外，BTF 可以让 eBPF 程序在内核升级之后，不需要编译就可以直接运行。
 
 
-> 解决了内核数据结果的定义问题，接下来的问题就是，如何让 eBPF 程序在内核升级之后，不需要重新编译就可以直接运行，eBPF的一次编译到处执行(Compile Once Run Everywhere，简称 CO-RE) 项目借助了BTF提供的调试信息，通过在 libbpf 中预定义不同内核版本中的数据结构的修改，解决了不同内核中数据结构的不兼容问题。
+> 解决了内核数据结果的定义问题，接下来的问题就是，如何让 eBPF 程序在内核升级之后，不需要重新编译就可以直接运行，eBPF 的一次编译到处执行 (Compile Once Run Everywhere，简称 CO-RE) 项目借助了 BTF 提供的调试信息，通过在 libbpf 中预定义不同内核版本中的数据结构的修改，解决了不同内核中数据结构的不兼容问题。
 
 
 

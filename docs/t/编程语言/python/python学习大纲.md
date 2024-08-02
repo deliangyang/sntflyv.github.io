@@ -30,16 +30,16 @@
 ## 进程、线程、协程
 
 ## 网络编程
-- 实现http协议
-- 实现redis协议
-- 实现memcached协议
+- 实现 http 协议
+- 实现 redis 协议
+- 实现 memcached 协议
 
-## GUI交互
+## GUI 交互
 - 内置图形库开发 Tkinter
 - wxPython
 - PyQt
 
-## WEB交互
+## WEB 交互
 - Django
 - Flask
 
@@ -51,13 +51,13 @@
 #  高阶
 
 ## 扩展开发
-- C/C++开发模块，C/C++内置解释器
+- C/C++ 开发模块，C/C++ 内置解释器
 
-## Python解释器
+## Python 解释器
 - GIL 全局解释器锁
 
-## Python编译原理
-- Python虚拟机
+## Python 编译原理
+- Python 虚拟机
 
 ## 机器学习
 

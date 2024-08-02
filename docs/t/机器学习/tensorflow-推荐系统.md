@@ -13,11 +13,11 @@
 - 欧几里得距离，相似度计算
     - 欧式距离越小、相似度越小
 - 余弦相似，分词向量法，判断文本的相似度
-    - 余弦值为0，表示文本的相似度低
-    - 余弦值接近1，表示文本的相似度越高
-    - 余弦值接近-1，表示文本相似度负相关
+    - 余弦值为 0，表示文本的相似度低
+    - 余弦值接近 1，表示文本的相似度越高
+    - 余弦值接近 -1，表示文本相似度负相关
 
-### Tensorflow实践
+### Tensorflow 实践
 1. 数据准备，用户行为数据
 2. 数据清洗，去除噪点
 3. 提取特征
@@ -30,7 +30,7 @@
 - [TFRecord 和 tf.Example](https://www.tensorflow.org/tutorials/load_data/tfrecord)
 - [分布式训练](https://www.oreilly.com/content/distributed-tensorflow/)
 - [Tensorflow 分布式训练](https://www.tensorflow.org/guide/distributed_training)
-- [TensorNet是一个构建在TensorFlow之上针对广告推荐等大规模稀疏场景优化的分布式训练框架](https://reposhub.com/python/deep-learning/Qihoo360-tensornet.html)
+- [TensorNet 是一个构建在 TensorFlow 之上针对广告推荐等大规模稀疏场景优化的分布式训练框架](https://reposhub.com/python/deep-learning/Qihoo360-tensornet.html)
 - [TensorFlow 分布式 Demo](https://blog.csdn.net/fenglepeng/article/details/105535061)
 - [Tensorflow.js Flink 实践](https://github.com/TsingJyujing/tf.js-on-flink)
 - [实时数据流上的机器学习——Tensorflow on Flink](https://zhuanlan.zhihu.com/p/55638891)
@@ -69,8 +69,8 @@ print(res)
 
 ## 视频推荐
 - 建立关键词库、个性化标签库
-- 视频上传，用户打tag（描述提取关键词）
-- 后台tag校正、后台打tag
+- 视频上传，用户打 tag（描述提取关键词）
+- 后台 tag 校正、后台打 tag
 - 设置标签库、用户设置标签
 - 收集用户的关注、用户的浏览、用户的评论（提取关键词），计算相似度，推荐
 - 热门推荐
@@ -85,5 +85,5 @@ print(res)
 
 
 ## 参考资料
-1. [Tensorflow构建推荐系统](https://blog.csdn.net/Oscar6280868/article/details/80952945)
+1. [Tensorflow 构建推荐系统](https://blog.csdn.net/Oscar6280868/article/details/80952945)
 2. [Tensorflow io](https://github.com/tensorflow/io#tensorflow-io)

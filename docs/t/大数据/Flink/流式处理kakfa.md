@@ -1,7 +1,7 @@
 
-## 流式处理之kakfa
+## 流式处理之 kakfa
 
-### golang 生成测试数据，写入kafka
+### golang 生成测试数据，写入 kafka
 ```go
 package main
 
@@ -62,7 +62,7 @@ func main() {
 }
 ```
 
-### Flink数据聚合
+### Flink 数据聚合
 
 ```scala
 package org.example

@@ -1,7 +1,7 @@
 
-Python使用C/C++扩展类模块和之前所讲的模块差不多，多了一些流程，比如：编写类的构造函数、析构函数、成员属性、成员方法、以及成员属性和方法绑定。  
+Python 使用 C/C++ 扩展类模块和之前所讲的模块差不多，多了一些流程，比如：编写类的构造函数、析构函数、成员属性、成员方法、以及成员属性和方法绑定。  
 
-随着扩展的模块越来越复杂，不得不了解Python中的引用计数规则，更加规范的管理内存使用，防止内存泄露。
+随着扩展的模块越来越复杂，不得不了解 Python 中的引用计数规则，更加规范的管理内存使用，防止内存泄露。
 
 如下是两个流程，由简入繁的了解类模块开发的整个流程。
 
@@ -20,7 +20,7 @@ graph TD;
     install-->test2(测试:python test.py)
 ```
 
-## 编写C/C++代码
+## 编写 C/C++ 代码
 ```c
 // custom.cpp
 #include "Python.h"
@@ -114,7 +114,7 @@ graph TD;
     PyModule_Create-->PyModule_AddObject(custommodule和CustomType绑定到类Custom上)
 ```
 
-## 编写C/C++代码
+## 编写 C/C++ 代码
 ```c
 #include "Python.h"
 #include "structmember.h"
@@ -124,7 +124,7 @@ typedef struct {
     PyObject *first; /* first name */
     PyObject *last;  /* last name */
     int number;
-} CustomObject;         // 定义新的结构体，Python中的类
+} CustomObject;         // 定义新的结构体，Python 中的类
 
 // Custom_new 初始化函数
 static PyObject* Custom_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
@@ -150,8 +150,8 @@ static PyObject* Custom_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 // Custom_dealloc 析构函数，释放对象
 static void Custom_dealloc(CustomObject *self)
 {
-    Py_XDECREF(self->first);                    // 释放成员first
-    Py_XDECREF(self->last);                     // 释放成员last
+    Py_XDECREF(self->first);                    // 释放成员 first
+    Py_XDECREF(self->last);                     // 释放成员 last
     Py_TYPE(self)->tp_free((PyObject *)self);   // 释放结构体 CustomObject
 }
 
@@ -181,7 +181,7 @@ static int Custom_init(CustomObject *self, PyObject *args, PyObject *kwds)
     return 0;
 }
 
-// 定义成员属性；CustomObject的成员属性
+// 定义成员属性；CustomObject 的成员属性
 static PyMemberDef Custom_members[] = {
         {"first", T_OBJECT_EX, offsetof(CustomObject, first), 0,
                 "first name"},
@@ -206,7 +206,7 @@ static PyObject *Custom_name(CustomObject *self, PyObject *Py_UNUSED(ignored))
     return PyUnicode_FromFormat("%S %S", self->first, self->last);
 }
 
-// Custom_methods 定义类的方法，并绑定Custom_name
+// Custom_methods 定义类的方法，并绑定 Custom_name
 static PyMethodDef Custom_methods[] = {
         {"name", (PyCFunction) Custom_name, METH_NOARGS,
          "Return the name, combining the first and last name"
@@ -258,7 +258,7 @@ PyMODINIT_FUNC PyInit_custom(void)
 ```
 ## 编写测试代码
 `pprint` 模块可以美化我们的输出，`dir` 可以打印模块中的成员属性和成员方法，更加直观的展示输出。`['first', 'last', 'name',
- 'number']` 正是我们之前在C/C++中定义的类属性、方法。
+ 'number']` 正是我们之前在 C/C++ 中定义的类属性、方法。
 ```python
 import custom
 from pprint import pprint

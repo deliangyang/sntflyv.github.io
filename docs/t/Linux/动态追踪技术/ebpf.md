@@ -1,26 +1,26 @@
 
-## BPF相关文档
+## BPF 相关文档
 
 [https://docs.kernel.org/bpf/index.html](https://docs.kernel.org/bpf/index.html)
 
-### BPF和eBPF的区别
+### BPF 和 eBPF 的区别
 [https://docs.kernel.org/bpf/classic_vs_extended.html](https://docs.kernel.org/bpf/classic_vs_extended.html)
 
-- 寄存器从2增加到10
-- 寄存器从32位增加到64位
-- 判断条件jt/if替换为jt/fall-through
+- 寄存器从 2 增加到 10
+- 寄存器从 32 位增加到 64 位
+- 判断条件 jt/if 替换为 jt/fall-through
 - 引入 bpf_call insn 和寄存器传递约定，以实现来自/向其他内核函数的零开销调用
 
-### bcc 就是BPF脚本工具集
+### bcc 就是 BPF 脚本工具集
 ![https://github.com/iovisor/bcc/blob/master/images/bcc_tracing_tools_2019.png?raw=true](https://github.com/iovisor/bcc/blob/master/images/bcc_tracing_tools_2019.png?raw=true)
 
-- 手动clone源码编译安装，不要使用`apt`或者`yum`等命令源安装
+- 手动 clone 源码编译安装，不要使用`apt`或者`yum`等命令源安装
 ```bash
 
 ```
 
 ### USDT probes (User Statically-Defined Tracing)
-用户静态定义的追踪探测，程序编译时需要开启动态追踪，用户态程序静态定义的跟踪点，类似于内核中的tracepoint，它需要在程序的源代码中添加代码。编译器会将`DTRACE_PROBEXXX`这种宏替换为一个nop空指令，不做其它的事情，只负责占位，同时编译器会在程序的`.note.stapsdt`中添加必要的信息。
+用户静态定义的追踪探测，程序编译时需要开启动态追踪，用户态程序静态定义的跟踪点，类似于内核中的 tracepoint，它需要在程序的源代码中添加代码。编译器会将`DTRACE_PROBEXXX`这种宏替换为一个 nop 空指令，不做其它的事情，只负责占位，同时编译器会在程序的`.note.stapsdt`中添加必要的信息。
 
 ```c
 #include <sys/>std.h>
@@ -51,7 +51,7 @@ int do_trace(struct pt_regs *ctx) {
 #### kprobes 探针，内核函数入口被调用
 
 
-#### kretprobes探测点在内核函数返回时后被调用
+#### kretprobes 探测点在内核函数返回时后被调用
 
 ### 用户空间探针
 
@@ -99,14 +99,14 @@ sudo tplist-bpfcc
 - aya
 
 
-## 什么是DWARF？
+## 什么是 DWARF？
 
 译文来自[https://www.deepl.com/translator](https://www.deepl.com/translator)
 > DWARF is a widely used, standardized debugging data format. DWARF was originally designed along with Executable and Linkable Format (ELF), although it is independent of object file formats.[1] The name is a medieval fantasy complement to "ELF" that had no official meaning, although the backronym "Debugging With Arbitrary Record Formats" has since been proposed.[1]
 
-> DWARF是一种广泛使用的、标准化的调试数据格式。DWARF最初是与可执行和可链接格式（ELF）一起设计的，尽管它独立于对象文件格式。[1]这个名字是对 "ELF "的中世纪幻想的补充，没有正式的含义，尽管后来有人提出了 "用任意记录格式进行调试 "的后缀名。
+> DWARF 是一种广泛使用的、标准化的调试数据格式。DWARF 最初是与可执行和可链接格式（ELF）一起设计的，尽管它独立于对象文件格式。[1]这个名字是对 "ELF "的中世纪幻想的补充，没有正式的含义，尽管后来有人提出了 "用任意记录格式进行调试 "的后缀名。
 
-## eBPF实现原理
+## eBPF 实现原理
 
 todo
 

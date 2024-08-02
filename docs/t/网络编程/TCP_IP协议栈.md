@@ -1,19 +1,19 @@
 
 ## TCP/IP 协议栈
 
-## 位码即tcp标志位，有6种标示：
-- SYN(synchronous建立联机) 
+## 位码即 tcp 标志位，有 6 种标示：
+- SYN(synchronous 建立联机) 
 - ACK(acknowledgement 确认)
-- PSH(push传送) 
-- FIN(finish结束) 
-- RST(reset重置) 
-- URG(urgent紧急)
+- PSH(push 传送) 
+- FIN(finish 结束) 
+- RST(reset 重置) 
+- URG(urgent 紧急)
 
 - Sequence number(顺序号码) 
 - Acknowledge number(确认号码)
 
 
-### Wireshark过滤条件
+### Wireshark 过滤条件
 ```
 ip.dst == 42.192.78.57 or ip.src == 42.192.78.57
 
@@ -32,7 +32,7 @@ graph LR;
     网络接口层-->网络互连层IP-->传输层TCP-->应用层HTTP协议等;
 ```
 
-#### OSI七层协议
+#### OSI 七层协议
 
 ```mermaid
 graph LR;
