@@ -1,4 +1,4 @@
-### excel中如何读取浮点时间，转化为时间错，且格式化
+### excel 中如何读取浮点时间，转化为时间错，且格式化
 
 ### 天数转时间戳
 ```js
@@ -35,7 +35,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 ```
 
 
-### Tips form表单提交个数超过1000就会被截断
+### Tips form 表单提交个数超过 1000 就会被截断
 
 ```
 max_input_vars 默认1000，可在php.ini中修改

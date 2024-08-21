@@ -1,7 +1,7 @@
 
-## mpas类型
+## mpas 类型
 
-|类型名称|解释|
+|类型名称 | 解释|
 |:----:|:----:|
 |BPF_MAP_TYPE_ARRAY|   |
 |BPF_MAP_TYPE_PERCPU_ARRAY|   |
@@ -13,7 +13,7 @@
 |BPF_MAP_TYPE_DEVMAP_HASH|   |
 |BPF_MAP_TYPE_HASH|  哈希表映射，用于保存 key/value 对 |
 |BPF_MAP_TYPE_PERCPU_HASH|   |
-|BPF_MAP_TYPE_LRU_HASH| 哈希表，拥有LRU功能  |
+|BPF_MAP_TYPE_LRU_HASH| 哈希表，拥有 LRU 功能  |
 |BPF_MAP_TYPE_LPM_TRIE|   |
 |BPF_MAP_TYPE_ARRAY_OF_MAPS|   | 
 |BPF_MAP_TYPE_HASH_OF_MAPS|   |
@@ -24,7 +24,7 @@
 |BPF_MAP_TYPE_SOCKHASH|   |
 |BPF_MAP_TYPE_XSKMAP|   |
 
-## 定义一个maps
+## 定义一个 maps
 ```c
 struct {
     __uint(type, BPF_MAP_TYPE_ARRAY);
@@ -36,18 +36,18 @@ struct {
 
 ## 相关函数
 
-- bpf_map_lookup_elem(&my_map, &index) 从map中查找一个元素
-- __sync_fetch_and_add(value, 1) 原子自增1
+- bpf_map_lookup_elem(&my_map, &index) 从 map 中查找一个元素
+- __sync_fetch_and_add(value, 1) 原子自增 1
 - bpf_map_update_elem（&my_map, &index, &value, BPF_ANY) 更新数值
 - long bpf_map_delete_elem(struct bpf_map *map, const void *key) 删除元素
 
 
-## 遍历maps
+## 遍历 maps
 
-- 遍历maps有点意思，起到关键的就是 `next_key`
-  - bpf_map_get_next_key 通过一个`null key`获取next_key，指针取地址
+- 遍历 maps 有点意思，起到关键的就是 `next_key`
+  - bpf_map_get_next_key 通过一个`null key`获取 next_key，指针取地址
   - bpf_map_lookup_elem 查找元素
-  - 将next_key赋值给当前key。
+  - 将 next_key 赋值给当前 key。
 - 用起来其它的语言方便
 ```c
 #include <bpf/libbpf.h>

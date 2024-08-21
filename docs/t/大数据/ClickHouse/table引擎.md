@@ -1,7 +1,7 @@
 
 ## ClickHouse Table 引擎
 
-### Kafka引擎
+### Kafka 引擎
 
 #### 特性
 - 发布或者订阅数据流

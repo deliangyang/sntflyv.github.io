@@ -20,7 +20,7 @@ lua_pushcfunction(L, &pmain);  /* to call 'pmain' in protected mode */
 ```shell script
 lua -e "pirnt(1)"
 ```
-5. handle_script执行脚本，先通过`  status = luaL_loadfile(L, fname);`加载文件
+5. handle_script 执行脚本，先通过`  status = luaL_loadfile(L, fname);`加载文件
 ```c
 status = luaL_loadfile(L, fname);
 if (status == LUA_OK) {

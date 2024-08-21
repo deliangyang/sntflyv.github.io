@@ -1,5 +1,5 @@
 
-## 不安全的unsafe.Pointer
+## 不安全的 unsafe.Pointer
 
 ### 基本概念
 - 结构体的成员变量在内存存储上是一段连续的内存
@@ -7,14 +7,14 @@
 - 基于结构的成员地址去计算偏移量，就能够得到其他成员变量的内存地址
 
 ### unsafe.Pointer
-- 任何类型的指针值都可以转换为Pointer
-- Pointer可以转换为任何类型的指针值
-- uintptr可以转换为Pointer
-- Pointer也可以转换为uintptr
+- 任何类型的指针值都可以转换为 Pointer
+- Pointer 可以转换为任何类型的指针值
+- uintptr 可以转换为 Pointer
+- Pointer 也可以转换为 uintptr
 
-### unsafe.Pointer有什么用呢？
+### unsafe.Pointer 有什么用呢？
 
-#### hack私有变量
+#### hack 私有变量
 - 当我编写脚本工具的时候，依赖的库对某个结构体的变量不可访问时，我们可以通过`unsafe.Pointer`计算偏移量进行数据篡改
 ```go
 // internal/test/test.go

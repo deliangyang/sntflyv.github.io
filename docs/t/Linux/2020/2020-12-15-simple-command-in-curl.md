@@ -1,15 +1,15 @@
-## 命令行下CURL的一些常用的参数
+## 命令行下 CURL 的一些常用的参数
 
-如下是CURl命令行的官方介绍，可以处理各种网络协议，这篇文章主要介绍CURL处理HTTP协议。
+如下是 CURl 命令行的官方介绍，可以处理各种网络协议，这篇文章主要介绍 CURL 处理 HTTP 协议。
 >  curl is a tool to transfer data from or to a server, using one of the supported protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP,  LDAPS,  POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET and TFTP). The command is designed to work  without  user  interaction.
 
-### -c 将服务器端获取的cookie写入文件
+### -c 将服务器端获取的 cookie 写入文件
 ```php
 <?php
-// 设置cookie
+// 设置 cookie
 setcookie('test', 'hello world!');
 ```
-参数`-c`可以将服务器获取的cookie写入到文件cookie.jar，`cat cookie.jar`可以查看cookie的内容，结果是一种结构化的文件存储，一行一个cookie键值对。
+参数`-c`可以将服务器获取的 cookie 写入到文件 cookie.jar，`cat cookie.jar`可以查看 cookie 的内容，结果是一种结构化的文件存储，一行一个 cookie 键值对。
 ```
 phantom:~ ydl$ curl http://localhost:9999/b.php -v -c cookie.jar
 *   Trying 127.0.0.1...
@@ -38,13 +38,13 @@ phantom:~ ydl$ cat cookie.jar
 localhost	FALSE	/	FALSE	0	test	hello+world%21
 ```
 
-### -b 加载cookie文件，请求服务器
+### -b 加载 cookie 文件，请求服务器
 ```php
 <?php
-// 打印cookie
+// 打印 cookie
 var_dump($_COOKIE);
 ```
-可以看到请求的header里已经带上了cookie：`test=hello+world%21`，用PHP程序打印cookie，可以看到test的值。
+可以看到请求的 header 里已经带上了 cookie：`test=hello+world%21`，用 PHP 程序打印 cookie，可以看到 test 的值。
 ```
 phantom:~ ydl$ curl http://localhost:9999/d.php -b cookie.jar -v
 *   Trying 127.0.0.1...
@@ -70,8 +70,8 @@ array(1) {
 * Closing connection 0
 ```
 
-### -d POST data参数
-PHP程序打印服务器获取的POST值
+### -d POST data 参数
+PHP 程序打印服务器获取的 POST 值
 ```php
 <?php
 var_dump($_POST);
@@ -85,7 +85,7 @@ array(2) {
   string(3) "123"
 }
 ```
-#### @以文件的方式POST数据
+#### @以文件的方式 POST 数据
 ```bash
 root@debian:/tmp# curl -XPOST localhost:9912/a.php -d @c.txt
 array(2) {
@@ -100,7 +100,7 @@ a=123&123=123
 ```
 
 ### -s 静默模式
-如下命令是不带s的，会打印出一些请求进度信息，耗时、下载速度等，加上`-s`参数就不会出现这些数据了
+如下命令是不带 s 的，会打印出一些请求进度信息，耗时、下载速度等，加上`-s`参数就不会出现这些数据了
 ```
 curl localhost:9912/c.php -o htllo.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -117,7 +117,7 @@ curl -s -w '%{http_code}' http://localhost:9999/d.php -o /dev/null
 200
 ```
 
-### -H 请求头参数, 冒号`:`分隔
+### -H 请求头参数，冒号`:`分隔
 如下请求会在请求头中带上两个参数`Content-type`和`User-Agent`，`UA`是我们自定义的`test`
 ```
 root@debian:/tmp# curl -H 'User-Agent:test' -H 'Content-type:application/json' localhost:9912/c.php -v -o /dev/null
@@ -149,7 +149,7 @@ root@debian:/tmp# curl -H 'User-Agent:test' -H 'Content-type:application/json' l
 * Closing connection 0
 ```
 
-### `-v （verbose）` 调试模式，会将请求的头部信息，服务器返回的Response打印出来
+### `-v （verbose）` 调试模式，会将请求的头部信息，服务器返回的 Response 打印出来
 > 案例如上
 
 ### -F 文件上传
@@ -189,4 +189,4 @@ curl -XPOST http://localhost:9999/f.php -F 'file=@f.php' -o /dev/null
 ```
 
 ### 更多细节
-> 输入命令`man curl`翻阅手册，可以看到更多的参数细节，熟能生巧，时不时翻阅CURL手册，可以发现更多的使用技巧，便利日常开发，会发现CURL更多强大的功能。
+> 输入命令`man curl`翻阅手册，可以看到更多的参数细节，熟能生巧，时不时翻阅 CURL 手册，可以发现更多的使用技巧，便利日常开发，会发现 CURL 更多强大的功能。

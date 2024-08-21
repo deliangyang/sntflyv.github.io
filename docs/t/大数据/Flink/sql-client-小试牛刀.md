@@ -3,7 +3,7 @@
 
 #### 配置文件解释
 - tables
-    - 定义表source, sink, 试图、临时表
+    - 定义表 source, sink, 试图、临时表
 - functions
     - UDF user defined function 用户自定义函数
 - catalogs 目录

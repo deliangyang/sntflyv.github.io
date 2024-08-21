@@ -1,11 +1,11 @@
 ---
 layout: home
 
-title: sntflyv的技术博客
+title: sntflyv 的技术博客
 titleTemplate: 分享日常学习到的新技术
 
 hero:
-  name: sntflyv的技术博客
+  name: sntflyv 的技术博客
   text: 记录自己的学习过程
   tagline: 
   actions:

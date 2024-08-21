@@ -1,14 +1,14 @@
 
-## 使用C/C++ 扩展Python，实现Python模块扩展或嵌入Python解释器
+## 使用 C/C++ 扩展 Python，实现 Python 模块扩展或嵌入 Python 解释器
 
-Python扩展开发。是使用C/C++来编写Python模块，通过导入动态链接库，调用C/C++编写的模块  
-嵌入Python解释器。在编写C/C++的程序时，通过调用Python解释器来执行Python的代码 
+Python 扩展开发。是使用 C/C++ 来编写 Python 模块，通过导入动态链接库，调用 C/C++ 编写的模块  
+嵌入 Python 解释器。在编写 C/C++ 的程序时，通过调用 Python 解释器来执行 Python 的代码 
 
-### 嵌入Python解释器
+### 嵌入 Python 解释器
 
-#### 编写Demo程序
-- Py_Initialize 初始化Python解释器
-- PyRun_SimpleString 执行简单的python语句，输出`hello world`
+#### 编写 Demo 程序
+- Py_Initialize 初始化 Python 解释器
+- PyRun_SimpleString 执行简单的 python 语句，输出`hello world`
 - Py_Finalize 释放或销毁解释器
 
 ```c
@@ -35,14 +35,14 @@ g++ test.cpp -o test \
 
 #### 思考
 - 如何实现一个动态的执行程序？
-    - 通过读取Python文件，将文件内容通过传参的方式交付给`PyRun_SimpleString`，这就回归到`C/C++`中的文件读取的问题了
+    - 通过读取 Python 文件，将文件内容通过传参的方式交付给`PyRun_SimpleString`，这就回归到`C/C++`中的文件读取的问题了
     - 我们可以通过程序传参或者重定向的方式，将 `print('hello world')` 替换为我们想要执行的程序
 - 是否可以实现代码热更新呢？
-    - 通常情况下，我们会耗费大量的时间在编译大型的C/C++程序，如果通过动态加载Python代码的方式，达到我们想要的效果，大大地提升了我们的效率，虽然这会牺牲程序的性能。
+    - 通常情况下，我们会耗费大量的时间在编译大型的 C/C++ 程序，如果通过动态加载 Python 代码的方式，达到我们想要的效果，大大地提升了我们的效率，虽然这会牺牲程序的性能。
 
-### 开发Python内置模块
+### 开发 Python 内置模块
 - `PyObject* add(PyObject* self, PyObject* args)` 定义一个静态的方法，返回数据结构 `PyObject*`
-    - 在C Python库中，所有的数据类型都为 `PyObject*`
+    - 在 C Python 库中，所有的数据类型都为 `PyObject*`
 - `PyArg_ParseTuple` 解析函数 `add` 的传参
     - `ii` 表示传入两个 int 类型的数值
     - `s` 表示传入的一个字符串参数
@@ -85,7 +85,7 @@ PyMODINIT_FUNC PyInit_demo(void){
 }
 ```
 
-#### 编写python程序，调用动态库模块，执行程序
+#### 编写 python 程序，调用动态库模块，执行程序
 - `sys.path.append('./demo.so')` 加载动态链接库
 - `demo.addx` 执行模块 `demo` 中的方法 `addx`
 ```py
@@ -120,11 +120,11 @@ python test.py
 ```
 
 #### 思考
-- 通过C/C++编写Python模块的好处良多。直接调用C/C++编写的程序大大地提升了Python应用程序的性能。
+- 通过 C/C++ 编写 Python 模块的好处良多。直接调用 C/C++ 编写的程序大大地提升了 Python 应用程序的性能。
 
 ## 总结
-- 无论用C/C++编写Python的模块，还是内置Python解释器，最终的解决方案都需要我们自己评估。需要从应用场景，开发成本，性能、或者效率提升等方面抉择，最终落地。
-- 通过底层的学习，让我们更深入地了解Python的实现原理以及应用，在编写Python程序时候会更加注意细节。
+- 无论用 C/C++ 编写 Python 的模块，还是内置 Python 解释器，最终的解决方案都需要我们自己评估。需要从应用场景，开发成本，性能、或者效率提升等方面抉择，最终落地。
+- 通过底层的学习，让我们更深入地了解 Python 的实现原理以及应用，在编写 Python 程序时候会更加注意细节。
 
 ## 资料引用
 

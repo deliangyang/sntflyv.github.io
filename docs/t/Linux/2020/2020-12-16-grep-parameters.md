@@ -1,4 +1,4 @@
-grep 是 liunx 下的一个命令行工具，可以通过正则模式搜索文件，或者通过管道匹配标准输入。grep 的参数分为4大类，可以通过`grep --help`或者`man grep`查看所有的参数，如下是官方介绍。
+grep 是 liunx 下的一个命令行工具，可以通过正则模式搜索文件，或者通过管道匹配标准输入。grep 的参数分为 4 大类，可以通过`grep --help`或者`man grep`查看所有的参数，如下是官方介绍。
 
 >   grep  searches  for PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters, and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in a shell command.  
   
@@ -29,9 +29,9 @@ To github.com:deliangyang/sntflyv.github.io.git
 - -E 或 --extended-regexp 将样式为延伸的正则表达式来使用。
 - -F 或 --fixed-regexp 将样式视为固定字符串的列表。
 - -G 或 --basic-regexp 将样式视为普通的表示法来使用。
-- -P 或 --perl-regexp 可以让grep使用perl的正则表达式语法，因为perl的正则更加多元化，能实现更加复杂的场景。
+- -P 或 --perl-regexp 可以让 grep 使用 perl 的正则表达式语法，因为 perl 的正则更加多元化，能实现更加复杂的场景。
 
-正则风格有四种，个人比较喜欢`Perl regular expressions`，像PHP中`preg_match`、`preg_replace`等函数用到的正则表达式。这里就不详细的介绍正则表达式了。
+正则风格有四种，个人比较喜欢`Perl regular expressions`，像 PHP 中`preg_match`、`preg_replace`等函数用到的正则表达式。这里就不详细的介绍正则表达式了。
 
 > phantom:~ ydl$ cat a.txt  |grep -P '2.\d+ MiB/s'  
 > Writing objects: 100% (6/6), 2.97 KiB | `2.97 MiB/s`, done.
@@ -65,7 +65,7 @@ grep -oP '2.\d+ MiB/s' --include=a.txt *
 grep -oP '2.\d+ MiB/s' --exclude=a.txt *
 ```
 
-#### -a, --text 把二进制文件当做text文本进行查找
+#### -a, --text 把二进制文件当做 text 文本进行查找
 
 ### 上下文控制
 #### -B, --before-context=NUM  输出命中内容及之前的行数
@@ -119,6 +119,6 @@ To github.com:deliangyang/sntflyv.github.io.git
 
 ### 总结
 1. 通常情况下用的比较多的参数是 `-oP` 或 `-vP`，正则选中或者正则反选输出
-2. grep结合正则表达式方便我们可以很快的在大文件或者目录中查找我们想要的信息
-3. grep更多的参数信息可以通过`man grep`，翻阅手册获取
-4. 作为程序员，文本处理怎么高效怎么来，当我们拿到需求的时候，过滤查找日志等信息是，第一时间不是写代码，而是想想这个需求是否可以通过grep来处理。
+2. grep 结合正则表达式方便我们可以很快的在大文件或者目录中查找我们想要的信息
+3. grep 更多的参数信息可以通过`man grep`，翻阅手册获取
+4. 作为程序员，文本处理怎么高效怎么来，当我们拿到需求的时候，过滤查找日志等信息是，第一时间不是写代码，而是想想这个需求是否可以通过 grep 来处理。

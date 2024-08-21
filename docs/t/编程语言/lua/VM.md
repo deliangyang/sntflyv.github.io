@@ -1,12 +1,12 @@
 
-### VM执行OpCode
+### VM 执行 OpCode
 
 ```c
 void luaV_execute (lua_State *L);
 ```
 
 
-### OpCode 有哪些，共47个指令
+### OpCode 有哪些，共 47 个指令
 ```c
 typedef enum {
     /*----------------------------------------------------------------------

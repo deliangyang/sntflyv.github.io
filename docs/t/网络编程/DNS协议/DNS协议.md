@@ -1,12 +1,12 @@
 
 ## DNS 协议
-- 发起DNS查询 `dig blog.sourcedev.cc`
-- WireShark抓包，过滤关键词 `dns` 即可
+- 发起 DNS 查询 `dig blog.sourcedev.cc`
+- WireShark 抓包，过滤关键词 `dns` 即可
 - DNS 服务器默认端口 53
 
 ### 查询
 
-#### 数据包二进制dump
+#### 数据包二进制 dump
 ```
 0000   4c f0 01 20 00 01 00 00 00 00 00 01 03 77 77 77   L.. .........www
 0010   09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00 01   .sourcedev.cc...
@@ -37,7 +37,7 @@ Domain Name System (query)
 
 ### 应答
 
-#### 数据包二进制dump
+#### 数据包二进制 dump
 ```
 0000   4c f0 81 80 00 01 00 01 00 00 00 00 03 77 77 77   L............www
 0010   09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00 01   .sourcedev.cc...
@@ -46,7 +46,7 @@ Domain Name System (query)
 ```
 
 #### 可视化数据结构
-- 权威服务器名称只是存了一个数值（数据包data所在位置offset开始位置），这个操作可以减少数据包的大小
+- 权威服务器名称只是存了一个数值（数据包 data 所在位置 offset 开始位置），这个操作可以减少数据包的大小
 ```
 Domain Name System (response)
     Transaction ID: 0x4cf0
@@ -68,7 +68,7 @@ Domain Name System (response)
     [Time: 0.058614000 seconds]
 ```
 
-#### 分析Answers部分的数据结构
+#### 分析 Answers 部分的数据结构
 
 ```
     Queries
@@ -97,9 +97,9 @@ Domain Name System (response)
     [Time: 0.062407000 seconds]
 ```
 
-- 一行是16个字节
+- 一行是 16 个字节
 - 0xc0 为分隔符
-- `Name: deliangyang.github.io` 用 `0xc0 0x2f` 表示，offset为47，即第二行倒数第一个位置（16 * 3 - 1 0x0b 0x65 0x65 ...），所以反查到的前一个name的位置 
+- `Name: deliangyang.github.io` 用 `0xc0 0x2f` 表示，offset 为 47，即第二行倒数第一个位置（16 * 3 - 1 0x0b 0x65 0x65 ...），所以反查到的前一个 name 的位置 
 ```
 0000   a7 28 81 80 00 01 00 05 00 00 00 00 04 62 6c 6f   .(...........blo
 0010   67 09 73 6f 75 72 63 65 64 65 76 02 63 63 00 00   g.sourcedev.cc..

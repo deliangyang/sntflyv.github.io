@@ -1,6 +1,6 @@
 
 ### Object
-> 每个可回收对象(collectable objects)都会有公共的类型
+> 每个可回收对象 (collectable objects) 都会有公共的类型
 
 ```c
 #define CommonHeader    GCObject *next; lu_byte tt; lu_byte marked
@@ -10,7 +10,7 @@ struct GCObject {
 };
 ```
 
-### TString，string value的结构，
+### TString，string value 的结构，
 ```c
 typedef struct TString {
   CommonHeader;
