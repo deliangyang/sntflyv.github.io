@@ -25,7 +25,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: yarn docs:build
-    - run: cp CNAME docs/.vitepress/dist
+    # - run: cp CNAME docs/.vitepress/dist
     - name: commit push
       run: |
         rm -rf .git

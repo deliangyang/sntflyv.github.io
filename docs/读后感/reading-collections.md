@@ -1,0 +1,2 @@
+
+- [Python 3.13 Preview: Free Threading and a JIT Compiler](https://realpython.com/python313-free-threading-jit/?continueFlag=0ea771214810d91d5680b5eb6d6a1c21#free-threading-and-jit-in-python-313-whats-the-fuss)
