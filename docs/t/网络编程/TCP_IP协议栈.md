@@ -22,7 +22,7 @@ ip.dst==10.0.2.25 or ip.addr==10.0.2.25
 
 ### Wireshark
 
-![img](../../../assets/wireshark:tcp.png)
+![img](../../../assets/wireshark-tcp.png)
 
 ### TCP/IP 分层
 #### 四层
